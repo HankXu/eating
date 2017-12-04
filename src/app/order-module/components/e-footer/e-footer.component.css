@@ -1,0 +1,16 @@
+.cus-func-row{
+    min-height: 198px;
+    text-align: center;
+}
+.cus-func-list>h3 {
+    line-height: 42px;
+}
+.cus-func-link{
+    display: block;
+    color: #999;
+    line-height: 34px;
+}
+
+.cus-copyright-row{
+    text-align: center;
+}

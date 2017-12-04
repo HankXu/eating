@@ -1,0 +1,27 @@
+<div nz-row class="cus-map">
+  <div nz-col [nzSpan]="12">
+    <form nz-form [nzLayout]="'inline'">
+      <div nz-row [nzGutter]="8">
+        <div nz-col [nzSpan]="21">
+          <nz-input-group [nzSize]="'large'" [nzCompact]="true">
+            <div nz-col [nzSpan]="4">
+              <nz-select [ngModel]="'浙江'" name="location" [nzSize]="'large'" class="cus-location-select">
+                <nz-option [nzLabel]="'浙江'" [nzValue]="'浙江'" class="cus-location-item"></nz-option>
+                <nz-option [nzLabel]="'广东'" [nzValue]="'广东'" class="cus-location-item"></nz-option>
+              </nz-select>
+            </div>
+            <div nz-col [nzSpan]="20">
+              <input [ngModel]="''" nz-input name="address" [nzSize]="'large'" placeholder="请输入收货地址" class="cus-address-input">
+            </div>
+          </nz-input-group>
+        </div>
+        <div nz-col [nzSpan]="3">
+          <button nz-button [nzType]="'primary'" class="cus-search-btn" type="submit">
+            <i class="anticon anticon-search"></i>
+            <span>搜索</span>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
