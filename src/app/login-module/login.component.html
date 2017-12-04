@@ -1,10 +1,57 @@
-<nz-layout>
-  <nz-content>
-    <div nz-row nzType="flex" nzAlign="middle" nzJustifyContent="center">
-      <div nz-col [nzSpan]="12">{{loginTitle}}</div>
+<nz-layout style="height:100%;background-color:#fff;">
+  <nz-content style="height:80%">
+    <div nz-row [nzType]="'flex'" [nzJustify]="'center'" [nzAlign]="'middle'" class="cus-main-container">
+      <h1 nz-col [nzSpan]="4" class="cus-login-logo">
+        <i class="anticon anticon-star"></i>
+        Eating
+      </h1>
+      <div nz-col [nzSpan]="4">
+        <nz-tabset class="cus-login-tabset">
+          <nz-tab>
+            <ng-template #nzTabHeading>
+              短信登陆
+            </ng-template>
+            <form nz-form >
+                <div nz-form-item>
+                  <nz-input [(ngModel)]="inputValue" [nzPlaceHolder]="'输入手机号码'" [nzSize]="'large'" name="phone" class="cus-login-input">
+                      <ng-template #suffix>
+                          <a href="#">获取验证码</a>
+                      </ng-template>
+                  </nz-input>
+                </div>
+                <div nz-form-item>
+                    <nz-input  class="cus-login-input" [(ngModel)]="inputValue" [nzPlaceHolder]="'输入验证码'" [nzSize]="'large'" name="phone"></nz-input>
+                </div>
+                <div nz-form-item class="cus-login-tips">
+                    温馨提示，如果使用的手机号未注册将会自动注册并登陆~~
+                </div>
+                <div nz-form-item>
+                    <button nz-button [nzType]="'primary'" [nzSize]="'large'" class="cus-login-btn">登陆</button>
+                </div>
+            </form>
+          </nz-tab>
+          <nz-tab>
+              <ng-template #nzTabHeading>
+                密码登陆
+              </ng-template>
+              <form nz-form >
+                  <div nz-form-item>
+                    <nz-input [(ngModel)]="inputValue" [nzPlaceHolder]="'输入手机号码/邮箱号码'" [nzSize]="'large'" name="phone" class="cus-login-input">
+                    </nz-input>
+                  </div>
+                  <div nz-form-item>
+                      <nz-input  class="cus-login-input" [(ngModel)]="inputValue" [nzPlaceHolder]="'输入密码'" [nzSize]="'large'" name="phone"></nz-input>
+                  </div>
+                  <div nz-form-item>
+                      <button nz-button [nzType]="'primary'" [nzSize]="'large'" class="cus-login-btn">登陆</button>
+                  </div>
+              </form>
+          </nz-tab>
+        </nz-tabset>
+      </div>
     </div>
   </nz-content>
-  <nz-footer>
-
+  <nz-footer style="height:20%" class="cus-login-footer">
+    <div>Copyright ©2017-2017 lulu., All Rights Reserved.</div>
   </nz-footer>
 </nz-layout>

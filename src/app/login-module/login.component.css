@@ -1,0 +1,37 @@
+.cus-main-container{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.cus-login-logo{
+    margin-bottom: 30px; 
+    color: #1e89e0;
+    font-size: 36px;
+    text-align: center;
+}
+
+.cus-login-footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    background-color: #f5f5f5;
+    text-align: center;
+}
+
+.cus-login-tabset{
+    min-height: 284px;
+    text-align: center
+}
+
+.cus-login-input{
+    height: 42px;
+}
+
+.cus-login-tips{
+    text-align: left;
+}
+
+.cus-login-btn{
+    width: 100%;
+}
