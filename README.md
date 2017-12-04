@@ -38,33 +38,33 @@ Eating项目是广东海洋大学14级软件工程系的校内企业实训项目
 
 目前修改后的项目目录是这样的
 
-|_app
+|-app
 
-|___|_app-module
+|---|-app-module
 
-|___|_app-routing.module
+|---|-app-routing.module
 
-|___|_app.component
+|---|-app.component
 
-|___|_...（html/css）
+|---|-...（html/css）
 
-|___|_order-module（自定义的模块）
+|---|-order-module（自定义的模块）
 
-|_______________|_order-module
+|---------------|-order-module
 
-|_______________|_order-routing.module
+|---------------|-order-routing.module
 
-|_______________|_order.component
+|---------------|-order.component
 
-|_______________|_...(html/css)
+|---------------|-...(html/css)
 
-|_______________|_components
+|---------------|-components
 
-|_______________________|_e-footer(组件文件夹)
+|-----------------------|-e-footer(组件文件夹)
 
-|_______________________|_home(组件文件夹)
+|-----------------------|-home(组件文件夹)
 
-|_______________________|_navigation(组件文件夹)
+|-----------------------|-navigation(组件文件夹)
 
 项目的目录基本就是目前的样子，也就是说，将整个项目的不同部分切分成不同的模块，每个模块放在一个自己的模块文件夹里，然后模块内的自定义组件都放在这个模块文件夹下的components文件夹下，之后会用到的service就放在跟components同级的service文件夹下。
 
