@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { OrderComponent } from './order.component';
+import { ShopLsitComponent } from './components/shop-lsit/shop-lsit.component';
 
 const routes: Routes = [
     {
@@ -9,9 +10,14 @@ const routes: Routes = [
         component: OrderComponent,
         children:[
             {
+                path: 'shop',
+                component: ShopLsitComponent
+            },
+            {
                 path: '',
                 component: HomeComponent
-            }
+            },
+            
         ]
     }
 ];

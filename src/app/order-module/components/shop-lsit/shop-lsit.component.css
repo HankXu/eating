@@ -1,0 +1,38 @@
+.cus-breadcrumb{
+    margin-top: 15px; 
+}
+.cus-shop-list-container{
+    margin: 25px 0;
+}
+
+.cus-shop-card{
+    display: flex;
+}
+.cus-cad-body:hover {
+    background-color: #f7f7f7
+}
+
+.cus-shop-link:hover .cus-card-name{
+    color: #0089dc;
+}
+
+.cus-shop-image-box{
+    width: 80px;
+    margin-right: 1.5em;
+}
+.cus-card-info{
+    display: flex;
+    flex-direction: column;
+}
+.cus-card-item{
+    margin-bottom: 6px; 
+    color: #999;
+}
+.cus-card-name{
+    font-size: 16px;
+    font-weight: 600;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #333;
+}

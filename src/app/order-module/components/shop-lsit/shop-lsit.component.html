@@ -1,0 +1,33 @@
+<div nz-row [nzType]="'flex'" [nzJustify]="'center'" >
+  <div nz-col [nzSpan]="18">
+    <div nz-row  [nzType]="'flex'" [nzJustify]="'space-between'" [nzAlign]="'middle'" class="cus-breadcrumb">
+      <div nz-col [nzSpan]="6">
+        当前位置：
+        <a href="#">麻章区广东海洋大学</a>
+      </div>
+      <div nz-col [nzSpan]="6">
+        <nz-input [nzType]="'search'" [nzPlaceHolder]="'搜索商家'"></nz-input>
+      </div>
+    </div>
+    <div nz-row class="cus-shop-list-container">
+      <div nz-col [nzSpan]="6" *ngFor="let shop of shopList">
+        <nz-card class="cus-cad-body">
+          <ng-template #body>
+            <a href="#" class="cus-shop-link">
+              <div class="cus-shop-card">
+                <div class="cus-shop-image-box">
+                  <img alt="example" width="80px" [src]="shop.shopLogo" />
+                </div>
+                <div class="cus-card-info">
+                  <div class="cus-card-name cus-card-item">{{shop.shopName}}</div>
+                  <div class="cus-card-sales cus-card-item">月售 {{shop.sales}} 单</div>
+                  <div class="cus-card-intro cus-card-item">{{shop.shopIntroduce}}</div>
+                </div>
+              </div>
+            </a>
+          </ng-template>
+        </nz-card>
+      </div>
+    </div>
+  </div>
+</div>
