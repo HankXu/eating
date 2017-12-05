@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModel } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
-import { ShopListService } from '../../service/shop-list.service';
 
+import { ShopListService } from '../../service/shop-list.service';
 
 const SHOPES = [
   {
@@ -76,8 +76,7 @@ const SHOPES = [
 @Component({
   selector: 'app-shop-lsit',
   templateUrl: './shop-lsit.component.html',
-  styleUrls: ['./shop-lsit.component.css'],
-  providers: [ShopListService]
+  styleUrls: ['./shop-lsit.component.css']
 })
 
 export class ShopLsitComponent implements OnInit {

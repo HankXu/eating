@@ -22,7 +22,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
   exports: [
     NavigationComponent,
     EFooterComponent
-  ],
-  providers: []
+  ]
 })
-export class CommonModule { }
+
+export class SharedModule { }

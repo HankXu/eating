@@ -2,20 +2,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule  } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 
-import { OrderComponent } from './order.component';
+//引入组件库
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 
+//导入本模块的路由模块
 import { OrderRoutingModule } from './order-routing.module';
 
+import { OrderComponent } from './order.component';
 import { HomeComponent } from './components/home/home.component';
-
-import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { ShopLsitComponent } from './components/shop-lsit/shop-lsit.component';
 import { ProfileMenuComponent } from './components/profile-menu/profile-menu.component';
 
 //引入共享的模块
-import { CommonModule } from '../common-module/common.module';
+import { SharedModule } from '../shared-module/shared-module.module';
+
+//引入模块内部使用的service
+import { ShopListService } from './service/shop-list.service';
 
 
 @NgModule({
@@ -28,13 +31,14 @@ import { CommonModule } from '../common-module/common.module';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    OrderRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    OrderRoutingModule,
     NgZorroAntdModule,
-    HttpModule,
-    CommonModule
+    SharedModule
   ],
-  providers: []
+  providers: [
+    ShopListService, //这是订餐模块内部使用的服务
+  ]
 })
 export class OrderModule { }
