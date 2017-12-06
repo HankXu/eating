@@ -1,0 +1,40 @@
+.cus-info-bar{
+    flex-direction: row;
+    height: 128px;
+}
+
+.cus-logo-box{
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+.cus-shop-logo{
+    width: 98px;
+    border-radius: 50%;
+}
+
+.cus-main-info, .cus-info-box{
+    display: flex;
+}
+
+.cus-info-box{
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 2em;
+    color: #fff;
+    line-height: 28px;
+}
+
+.cus-info-box>h2{
+    color: #fff;
+}
+
+.cus-other-info-item{
+    color: #fff;
+    font-size: 16px;
+    line-height: 32px;
+    text-align: center;
+}
+.cus-info-item-content{
+    font-size: 20px;
+}

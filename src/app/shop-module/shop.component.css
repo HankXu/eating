@@ -1,0 +1,19 @@
+.cus-nav-header{
+    height: auto;
+    min-height: 68px;
+    background: url(../../assets/shop-bg.jpg) no-repeat;
+    background-color: #fff;
+}
+.cus-main-content{
+    margin-top: 28px;
+}
+.cus-announce-bar{
+    margin-left: 16px;
+    background: none;
+}
+.cus-announce-content{
+    font-size: 14px;
+}
+.cus-footer{
+    background-color: #fff;
+}

@@ -1,0 +1,43 @@
+.cus-category-title{
+    margin-bottom: 12px;
+    text-indent: 1em;
+}
+.cus-goods-card:host{
+    padding: 0;
+}
+.cus-goods-card-container{
+    display: flex;
+    align-items: center;
+}
+.cus-goods-card{
+    display: flex;
+    align-items: center;
+}
+.cus-goods-item{
+    margin-bottom: 12px;
+}
+.cus-goods-image{
+    margin-right: 16px;
+}
+.cus-goods-image > img{
+    width: 108px;
+    height: 108px;
+}
+.cus-goods-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 68%;
+    height: 108px;
+}
+.cus-goods-info-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 42px;
+}
+.cus-goods-price{
+    font-size: 16px;
+    font-weight: bold;
+    color: #f54e4e;
+}

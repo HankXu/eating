@@ -1,6 +1,6 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule  } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { CommonModule } from '@angular/common'
 
 import { NavigationComponent } from './components/navigation/navigation.component';
 
@@ -15,7 +15,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
     EFooterComponent,
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
     BrowserAnimationsModule,
     NgZorroAntdModule,
   ],

@@ -1,0 +1,27 @@
+<div nz-row class="cus-sub-menu">
+  <div nz-col [nzSpan]="20" [nzOffset]="2" class="cus-nav-container">
+        <ul nz-menu [nzMode]="'horizontal'">
+          <li nz-menu-item [nzSelected]="true">
+            <a href="" class="cus-sub-menu-link"> 所有商品 </a>
+          </li>
+          <li nz-menu-item>
+            <a href="" class="cus-sub-menu-link"> 评论 </a>
+          </li>
+          <li nz-menu-item>
+            <a href="https://ng.ant.design" target="_blank" rel="noopener noreferrer" class="cus-sub-menu-link"> 商家资质 </a>
+          </li>
+        </ul>
+        <nz-radio-group [(ngModel)]="sortType" [nzSize]="'large'">
+          <label nz-radio-button [nzValue]="'default'">
+            <span>默认排序</span>
+          </label>
+          <label nz-radio-button [nzValue]="'price'">
+            <span>价格 <i class="anticon anticon-arrow-down"></i></span>
+          </label>
+          <label nz-radio-button [nzValue]="'sales'">
+            <span>销量 <i class="anticon anticon-arrow-down"></i></span>
+          </label>
+        </nz-radio-group>
+        <nz-input [nzType]="'search'" [nzPlaceHolder]="'input search text'" [nzSize]="'large'" [(ngModel)]="_value" style="width: 200px;" class="cus-search-box"></nz-input>
+  </div>
+</div>

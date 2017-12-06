@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
@@ -18,7 +17,6 @@ import { LoginRoutingModule } from './login-routing.module';
       LoginComponent,
     ],
     imports: [
-      BrowserModule,
       BrowserAnimationsModule, 
       FormsModule,
       ReactiveFormsModule,

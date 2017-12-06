@@ -1,0 +1,29 @@
+<nz-layout>
+  <nz-header class="cus-nav-header">
+    <app-navigation class="cus-navigation"></app-navigation>
+    <app-shop-info-bar></app-shop-info-bar>
+    <app-shop-sub-nav></app-shop-sub-nav>
+  </nz-header>
+  <nz-content class="cus-main-content">
+    <div nz-col [nzSpan]="18" [nzOffset]="3">
+      <nz-layout>
+        <nz-content>
+          <router-outlet></router-outlet>
+        </nz-content>
+        <nz-sider class="cus-announce-bar">
+            <nz-card>
+                <ng-template #title>
+                  商家公告
+                </ng-template>
+                <ng-template #body>
+                  <p class="cus-announce-content">今天免费送，不BB</p>
+                </ng-template>
+              </nz-card>
+        </nz-sider>
+      </nz-layout>
+    </div>
+  </nz-content>
+  <nz-footer class="cus-footer">
+    <app-e-footer></app-e-footer>
+  </nz-footer>
+</nz-layout>

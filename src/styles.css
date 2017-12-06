@@ -2,3 +2,15 @@
 body{
     margin: 0;
 }
+body .ant-layout{
+    background-color: #f7f7f7;
+}
+.cus-card-rate .ant-rate{
+    font-size: 12px;
+}
+.cus-card-rate .ant-rate-star{
+    margin-right: 4px;
+}
+.cus-goods-item .ant-card-body{
+    padding: 0;
+}

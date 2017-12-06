@@ -20,8 +20,9 @@
                 </div>
                 <div class="cus-card-info">
                   <div class="cus-card-name cus-card-item">{{shop.shopName}}</div>
-                  <div class="cus-card-sales cus-card-item">月售 {{shop.sales}} 单</div>
-                  <div class="cus-card-intro cus-card-item">{{shop.shopIntroduce}}</div>
+                  <div class="cus-card-rate cus-card-item"><nz-rate [ngModel]="shop.rate" [nzDisabled]="true"></nz-rate></div>
+                  <div class="cus-card-sales cus-card-item"> 月售 {{shop.sales}} 单</div>
+                  <div class="cus-card-consum cus-card-item"> 起送价：{{shop.mincost}} 元</div>
                 </div>
               </div>
             </a>

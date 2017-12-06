@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { OrderComponent } from './order.component';
-import { ShopLsitComponent } from './components/shop-lsit/shop-lsit.component';
+import { ShopListComponent } from './components/shop-list/shop-list.component';
+import { ShopComponent } from '../shop-module/shop.component';
 
 const routes: Routes = [
     {
@@ -10,8 +11,8 @@ const routes: Routes = [
         component: OrderComponent,
         children:[
             {
-                path: 'shop',
-                component: ShopLsitComponent
+                path: 'shopList',
+                component: ShopListComponent
             },
             {
                 path: '',
