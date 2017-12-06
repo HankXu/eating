@@ -1,0 +1,76 @@
+.cus-order-container{
+    padding-top: 30px;
+    padding-bottom: 50px;
+}
+
+.cus-order-list-menu{
+    overflow: hidden;
+
+}
+.cus-order-list-menu-ul{
+    /* background-color: #e9e9e9; */
+    color: #000;
+    
+}
+.cus-order-list-menu-ul>li{
+    font-size: 16px;
+    height: 40px;
+    line-height: 40px;
+}
+
+
+
+
+
+.cus-order-list-out{
+    padding-left:10px;
+}
+.cus-order-list-in{
+    background-color: #fff;
+    overflow: hidden;
+}
+
+/* 每一行订单的row */
+.cut-order-item-row{
+    box-shadow: 0px 1px 0px #eee;
+}
+
+.cus-order-list-in-padding{
+    padding:10px;
+}
+.cus-order-list-in-padding-title{
+    background-color: #eee;
+    text-align: center;
+    font-size: 14px;
+    line-height: 30px;
+    height: 30px;
+}
+.cus-order-list-in-padding-item{
+    text-align: center;
+}
+
+
+/* 订单表中的商家头像 */
+.cus-order-item-img{
+    width: 50px;
+    height: 50px;
+    float: left;
+    border-radius: 50%;
+}
+/* 订单列表中的商家名称以及订单号 */
+.cus-order-item-content{
+    padding-left: 15px;
+    float: left;
+    text-align: left;
+}
+.cus-order-item-content>p{
+    font-size: 16px;
+    font-weight: bold;
+    padding-bottom: 5px;
+}
+
+/* 金额 */
+.cus-order-item-money{
+    font-weight: bold;
+    font-size: 16px;
+}

@@ -13,6 +13,7 @@ import { OrderComponent } from './order.component';
 import { HomeComponent } from './components/home/home.component';
 import { ShopLsitComponent } from './components/shop-lsit/shop-lsit.component';
 import { ProfileMenuComponent } from './components/profile-menu/profile-menu.component';
+import { EOrderListComponent } from './components/e-order-list/e-order-list.component';
 
 //引入共享的模块
 import { SharedModule } from '../shared-module/shared-module.module';
@@ -26,7 +27,8 @@ import { ShopListService } from './service/shop-list.service';
     OrderComponent,
     HomeComponent,
     ShopLsitComponent,
-    ProfileMenuComponent 
+    ProfileMenuComponent,
+    EOrderListComponent
   ],
   imports: [
     BrowserModule,
