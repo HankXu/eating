@@ -21,6 +21,7 @@ import { SharedModule } from '../shared-module/shared-module.module';
 
 //引入模块内部使用的service
 import { ShopListService } from './service/shop-list.service';
+import { OrderService } from './service/order.service';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { ShopListService } from './service/shop-list.service';
   ],
   providers: [
     ShopListService, //这是订餐模块内部使用的服务
+    OrderService,
   ]
 })
 export class OrderModule { }

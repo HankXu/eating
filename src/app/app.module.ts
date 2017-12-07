@@ -21,13 +21,13 @@ import { ShopModule } from './shop-module/shop.module';
     AppComponent,
   ],
   imports: [
+    HttpModule,
     BrowserModule,
     CoreModule.forRoot(),
     LoginModule,
     OrderModule,
     ShopModule,
     AppRoutingModule, //根路由模块要放在子路由模块后面
-    HttpModule
   ],
   bootstrap: [AppComponent]
 })
