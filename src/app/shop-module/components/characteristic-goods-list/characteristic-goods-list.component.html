@@ -13,7 +13,7 @@
             </div>
             <div class="cus-goods-info-item">
               <span class="cus-goods-price">￥ {{goods.goodsPrice}}</span>
-              <button nz-button [nzType]="'primary'" class="cus-goods-add">添加到购物车</button>
+              <button nz-button [nzType]="'primary'" (click)="select(goods.id)" class="cus-goods-add">添加到购物车</button>
             </div>
           </div>
         </div>

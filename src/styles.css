@@ -14,3 +14,7 @@ body .ant-layout{
 .cus-goods-item .ant-card-body{
     padding: 0;
 }
+
+.cart-content .ant-card-body{
+    padding: 0 24px;
+}

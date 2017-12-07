@@ -17,6 +17,7 @@ import { ShopSubNavComponent } from './components/shop-sub-nav/shop-sub-nav.comp
 import { GoodsCategoryListComponent } from './components/goods-category-list/goods-category-list.component';
 import { AllGoodsListComponent } from './components/all-goods-list/all-goods-list.component';
 import { CharacteristicGoodsListComponent } from './components/characteristic-goods-list/characteristic-goods-list.component';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { CharacteristicGoodsListComponent } from './components/characteristic-go
     GoodsCategoryListComponent,
     AllGoodsListComponent,
     CharacteristicGoodsListComponent,
+    ShoppingCartComponent,
     ShopInfoBarComponent
   ],
 })

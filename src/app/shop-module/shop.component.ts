@@ -9,6 +9,8 @@ import { FormsModule } from '@angular/forms';
 
 export class ShopComponent implements OnInit{
 
+    selectedGoods = {};
+
     constructor(){}
 
     ngOnInit(){

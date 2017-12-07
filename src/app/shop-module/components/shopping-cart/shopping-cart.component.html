@@ -1,0 +1,24 @@
+<div class="cus-shopping-cart">
+  <nz-card class="cart-content">
+    <ng-template #title>
+      我的购物车
+    </ng-template>
+    <ng-template #extra>
+      <a (click)="clearCart()">清空</a>
+    </ng-template>
+    <ng-template #body>
+      <div class="cus-innercart-item" *ngFor="let item of cartItems">
+        <span class="cus-innercart-name" title="{{item.goodsName}}">{{item.goodsName}}</span>
+        <nz-input-number [(ngModel)]="item.goodsCounts" [nzMin]="0" [nzStep]="1" [nzSize]="'small'" style="width:60px;"></nz-input-number>
+        <span class="cus-innercart-total">￥{{item.goodsPrice * item.goodsCounts}}</span>
+      </div>
+    </ng-template>
+  </nz-card>
+  <div class="cus-cart-line">
+    <div>
+      <i class="anticon anticon-shopping-cart"></i>
+      <span class="cus-cart-total"> ￥{{cartTotal}}</span>
+    </div>
+    <button nz-button [nzType]="'primary'" class="cus-cart-btn" [disabled]="!cartItems.length">结算</button>
+  </div>
+</div>
