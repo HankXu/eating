@@ -6,8 +6,8 @@ import { ShopComponent } from './shop-module/shop.component';
 import { AppComponent } from './app.component';
 
 const routes: Routes = [
-    {path: 'login', component: LoginComponent },
-    {path: 'shop/:id',component: ShopComponent},
+    //{path: 'login', component: LoginComponent },
+    //{path: 'shop/:id',component: ShopComponent},
     {path: '', redirectTo: '/eating', pathMatch: 'full'},
     {path: '**', redirectTo: '/eating', pathMatch: 'full'}
 ];

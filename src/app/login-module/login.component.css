@@ -21,7 +21,7 @@
 
 .cus-login-tabset{
     min-height: 284px;
-    text-align: center
+    text-align: center;
 }
 
 .cus-login-input{
@@ -34,4 +34,13 @@
 
 .cus-login-btn{
     width: 100%;
+}
+
+.cut-validCode-btn {
+    color: #1e89e0;
+    cursor:pointer;
+}
+
+.cut-disable-validCode-btn {
+    color: #47494b;
 }

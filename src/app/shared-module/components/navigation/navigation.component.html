@@ -6,12 +6,12 @@
     </div>
     <div nz-col [nzSpan]="2">
       <li nz-menu-item nzselected=true class="cus-menu-item">
-        <a href="/" class="cus-menu-link">首页</a>
+        <a [routerLink]="['/']" class="cus-menu-link">首页</a>
       </li>
     </div>
     <div nz-col [nzSpan]="2">
       <li nz-menu-item class="cus-menu-item">
-        <a href="/eating/orderlist" class="cus-menu-link">我的订单</a>
+        <a [routerLink]="['/eating/orderlist']" class="cus-menu-link">我的订单</a>
       </li>
     </div>
     <div nz-col [nzSpan]="2">
@@ -21,9 +21,9 @@
     </div>
     <div nz-col [nzSpan]="3" [nzOffset]="8">
       <li nz-menu-item class="cus-menu-item">
-        <a href="/" class="cus-menu-link">
+        <div [routerLink]="['/login']" class="cus-menu-link">
           <i class="anticon anticon-user"></i> 登陆/注册
-        </a>
+        </div>
       </li>
     </div>
   </div>
