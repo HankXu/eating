@@ -16,7 +16,11 @@ const routes: Routes = [
                 component: EOrderListComponent 
             },
             {
-                path: 'shopList',
+                path: 'orderlist/:id',
+                component: EOrderListComponent 
+            },
+            {
+                path: 'shop',
                 component: ShopListComponent
             },
             {

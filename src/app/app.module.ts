@@ -21,6 +21,7 @@ import { ShopModule } from './shop-module/shop.module';
     AppComponent,
   ],
   imports: [
+    HttpModule,
     BrowserModule,
     CoreModule.forRoot(),
     LoginModule,
