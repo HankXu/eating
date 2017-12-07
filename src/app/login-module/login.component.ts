@@ -2,10 +2,12 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgModel } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { Location } from '@angular/common';
+import { Md5 } from "ts-md5/dist/md5";
 
 import { NzMessageService } from 'ng-zorro-antd';
 // http请求服务
 import { LoginService } from './service/login.service';
+import { Router } from '@angular/router';
 
 const phoneRegex = /^(13\d{9}$)|(15[0,1,2,3,5,6,7,8,9]\d{8}$)|(18[0,2,5,6,7,8,9]\d{8}$)|(147\d{8})$/;
 const passwordRegex = /^.{6,16}$/;
@@ -35,6 +37,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     constructor(
         private location: Location,
         private _message: NzMessageService,
+        private router: Router,
         private loginService: LoginService
     ) { }
 
@@ -48,6 +51,8 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.phoneNum = '';
         this.validCode = '';
         this.password = '';
+
+        this.isLogin();
     };
 
     //验证码按钮状态
@@ -58,6 +63,32 @@ export class LoginComponent implements OnInit, OnDestroy {
             this.isDisable = true;
         }
     };
+
+    // 是否已登录
+    isLogin() {
+        this.loginService.isLogin().then(
+            resultMessage => {
+                let resultCode = resultMessage.serviceResult;
+                switch (resultCode) {
+                    case 1: {
+                        if (resultMessage.resultParm.isLogin == true) {
+                            console.log("login");
+                            this.router.navigate(['/eating']);
+                        }
+                        break;
+                    }
+                    default: {
+                        //其他错误
+                        this.createMessage('error', '服务器繁忙, 请稍后再试.');
+                        break;
+                    }
+                }
+            },
+            error => {
+                this.createMessage('error', '服务器繁忙, 请稍后再试.');
+            }
+        );
+    }
 
     // 获取验证码
     getValidCode() {
@@ -83,7 +114,7 @@ export class LoginComponent implements OnInit, OnDestroy {
                     switch (resultCode) {
                         case 1: {
                             //验证码发送成功
-                            this.createMessage('success', '请输入有效的验证码');
+                            this.createMessage('success', '验证码发送成功');
                             break;
                         }
                         case 1007: {
@@ -169,9 +200,9 @@ export class LoginComponent implements OnInit, OnDestroy {
         } else {
             if (!this.isLogining) {
                 this.isLogining = true;
-                
+
                 //登录请求
-                this.loginService.passwordLogin(this.phoneNum, this.password).then(
+                this.loginService.passwordLogin(this.phoneNum, Md5.hashStr(this.password).toString()).then(
                     resultMessage => {
                         let resultCode = resultMessage.serviceResult;
                         switch (resultCode) {

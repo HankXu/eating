@@ -9,7 +9,7 @@ import { Userkey } from '../../models/Userkey';
 @Injectable()
 export class LoginService {
     // baseUrl
-    private baseUrl = '/eating/user/';
+    private baseUrl = '/eating/';
 
     // 构造器
     constructor(
@@ -17,8 +17,19 @@ export class LoginService {
     ) { }
 
     // 获取验证码
+    isLogin(): Promise<ResultMessage> {
+        let url = this.baseUrl + "isLogin";
+        
+        return this.http
+            .post(url, null)
+            .toPromise()
+            .then(response => response.json() as ResultMessage)
+            .catch(this.handleError)
+    }
+
+    // 获取验证码
     getValidCode(phone: string): Promise<ResultMessage> {
-        let url = this.baseUrl + "getValidCode";
+        let url = this.baseUrl + "userkey/getValidCode";
         let userkey = new Userkey();
         userkey.loginmsg = phone;
         let data = {
@@ -27,13 +38,13 @@ export class LoginService {
         return this.http
             .post(url, data)
             .toPromise()
-            .then(response => response.json().data as ResultMessage)
+            .then(response => response.json() as ResultMessage)
             .catch(this.handleError)
     }
 
     // 验证码登录
     messageLogin(phone: string, validCode: string): Promise<ResultMessage> {
-        let url = this.baseUrl + "getValidCode";
+        let url = this.baseUrl + "userkey/messageLogin";
         let userkey = new Userkey();
         userkey.loginmsg = phone;
         let data = {
@@ -43,13 +54,13 @@ export class LoginService {
         return this.http
             .post(url, data)
             .toPromise()
-            .then(response => response.json().data as ResultMessage)
+            .then(response => response.json() as ResultMessage)
             .catch(this.handleError)
     }
 
-     // 密码登录
-     passwordLogin(phone: string, password: string): Promise<ResultMessage> {
-        let url = this.baseUrl + "passwordLogin";
+    // 密码登录
+    passwordLogin(phone: string, password: string): Promise<ResultMessage> {
+        let url = this.baseUrl + "userkey/passwordLogin";
         let userkey = new Userkey();
         userkey.loginmsg = phone;
         userkey.credential = password;
@@ -59,7 +70,7 @@ export class LoginService {
         return this.http
             .post(url, data)
             .toPromise()
-            .then(response => response.json().data as ResultMessage)
+            .then(response => response.json() as ResultMessage)
             .catch(this.handleError)
     }
 
