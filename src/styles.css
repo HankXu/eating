@@ -14,3 +14,7 @@ body .ant-layout{
 .cus-goods-item .ant-card-body{
     padding: 0;
 }
+
+.cus-menu-item .cus-menu-link .anticon, .cus-menu-item .cut-avatar .anticon {
+    margin-right: 0;
+}

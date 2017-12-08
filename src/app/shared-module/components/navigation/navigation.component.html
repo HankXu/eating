@@ -2,7 +2,7 @@
   <div nz-row>
     <div nz-col [nzSpan]="3" [nzOffset]="2">
       <li nz-menu-item class="cus-logo">
-        <i class="anticon anticon-star"></i> Eating</li>
+        <i class="anticon anticon-dingding"></i> Eating</li>
     </div>
     <div nz-col [nzSpan]="2">
       <li nz-menu-item nzselected=true class="cus-menu-item">
@@ -21,8 +21,11 @@
     </div>
     <div nz-col [nzSpan]="3" [nzOffset]="8">
       <li nz-menu-item class="cus-menu-item">
-        <div [routerLink]="['/login']" class="cus-menu-link">
-          <i class="anticon anticon-user"></i> 登陆/注册
+        <div *ngIf="!isLogin" [routerLink]="['/login']" class="cus-menu-link" class="cut-avatar">
+          <nz-avatar nzIcon="anticon anticon-user" nzSize="large"></nz-avatar> 登陆/注册
+        </div>
+        <div *ngIf="isLogin" class="cut-avatar">
+          <nz-avatar nzIcon="anticon anticon-user" nzSize="large" nzSrc="{{userfaceimg}}"></nz-avatar> {{username}}
         </div>
       </li>
     </div>
