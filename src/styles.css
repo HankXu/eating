@@ -15,6 +15,10 @@ body .ant-layout{
     padding: 0;
 }
 
-.cus-menu-item .cus-menu-link .anticon, .cus-menu-item .cut-avatar .anticon {
+.cus-menu-item .cut-avatar .anticon {
     margin-right: 0;
+}
+
+.cus-menu-item .cut-avatar .cut-menu-anticon {
+    margin-right: 5px;
 }

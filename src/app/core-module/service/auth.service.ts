@@ -75,25 +75,38 @@ export class AuthService implements OnInit {
         return new Promise<Userinfo>(
             resolve => {
                 let promise = null;
-                console.log("ser--------if (userinfo != null) {if (this.logining) {");
                 if (this.logining) {
-                    console.log("ser--------if (this.userinfo == null) {");
                     if (this.userinfo == null) {
                         //请求用户信息
-                        console.log("ser--------promise = this.reqUserinfo()");
                         promise = this.reqUserinfo().then(resultMessage => this.userinfo);
                     } else {
-                        console.log("ser--------promise = new Promise<Userinfo>");
                         promise = new Promise<Userinfo>(resolve => resolve(this.userinfo));
                     }
                 } else {
                     //用户未登录
-                    console.log("ser--------//用户未登录");
                     this.userinfo = null;
                 }
                 resolve(promise);
             }
         )
+    }
+
+    // 用户登出
+    logout() {
+        let url = this.baseUrl + "logout";
+        return this.http
+            .post(url, null)
+            .toPromise()
+            .then(
+            response => {
+                let resultMessage = response.json() as ResultMessage;
+                if (resultMessage.serviceResult == 1) {
+                    this.logining = false;
+                    this.userinfo = null;
+                }
+                return resultMessage;
+            }
+            ).catch(this.handleError)
     }
 
     private handleError(error: any): Promise<any> {
