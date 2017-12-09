@@ -11,7 +11,7 @@
     </div>
     <div nz-col [nzSpan]="2">
       <li nz-menu-item class="cus-menu-item">
-        <a [routerLink]="['/home/orderlist']" class="cus-menu-link">我的订单</a>
+        <a [routerLink]="['/profile/orders', 0]" class="cus-menu-link">我的订单</a>
       </li>
     </div>
     <div nz-col [nzSpan]="2">
@@ -25,7 +25,7 @@
           <nz-avatar nzIcon="anticon anticon-login" nzSize="large"></nz-avatar> 登陆/注册
         </div>
         <div nz-submenu *ngIf="isLogin">
-          <div title class="cut-avatar">
+          <div title class="cut-avatar" [routerLink]="['/profile']">
             <nz-avatar nzIcon="anticon anticon-user" nzSize="large" nzSrc="{{userfaceimg}}"></nz-avatar> {{username}}
           </div>
           <ul>

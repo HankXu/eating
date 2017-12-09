@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuService } from '../../service/menu.service.';
 
 @Component({
   selector: 'app-user-addresses',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserAddressesComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private menuService: MenuService
+  ) { }
 
   ngOnInit() {
+    this.menuService.sethMenuIndex(2);
   }
-
 }

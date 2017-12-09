@@ -3,8 +3,21 @@
         <app-navigation class="cus-navigation"></app-navigation>
     </nz-header>
 
-    <nz-content>
-        <router-outlet></router-outlet>
+    <nz-content class="cus-profile-content">
+
+        <app-profile-breadcrumb></app-profile-breadcrumb>
+
+        <nz-layout class="cus-profile-subcontent"> 
+
+            <nz-sider [nzWidth]="180" class="cus-profile-sider">
+                <app-profile-menu></app-profile-menu>
+            </nz-sider>
+
+            <nz-content class="cus-outlet-content">
+                <router-outlet></router-outlet>
+            </nz-content>
+
+        </nz-layout>
     </nz-content>
 
     <nz-footer class="cus-footer">

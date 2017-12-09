@@ -88,7 +88,7 @@ export class LoginComponent implements OnInit, OnDestroy {
                 }
             },
             error => {
-                this.createMessage('error', '服务器繁忙, 请稍后再试.');
+                console.log("网络环境差")
             }
         );
     }
