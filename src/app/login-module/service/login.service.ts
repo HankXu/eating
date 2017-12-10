@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 // models
@@ -9,7 +9,7 @@ import { Userkey } from '../../models/Userkey';
 @Injectable()
 export class LoginService {
     // baseUrl
-    private baseUrl = '/eating/';
+    private baseUrl = '/eating/userkey/';
 
     // 构造器
     constructor(
@@ -17,19 +17,8 @@ export class LoginService {
     ) { }
 
     // 获取验证码
-    isLogin(): Promise<ResultMessage> {
-        let url = this.baseUrl + "isLogin";
-        
-        return this.http
-            .post(url, null)
-            .toPromise()
-            .then(response => response.json() as ResultMessage)
-            .catch(this.handleError)
-    }
-
-    // 获取验证码
     getValidCode(phone: string): Promise<ResultMessage> {
-        let url = this.baseUrl + "userkey/getValidCode";
+        let url = this.baseUrl + "getValidCode";
         let userkey = new Userkey();
         userkey.loginmsg = phone;
         let data = {
@@ -44,7 +33,7 @@ export class LoginService {
 
     // 验证码登录
     messageLogin(phone: string, validCode: string): Promise<ResultMessage> {
-        let url = this.baseUrl + "userkey/messageLogin";
+        let url = this.baseUrl + "messageLogin";
         let userkey = new Userkey();
         userkey.loginmsg = phone;
         let data = {
@@ -60,7 +49,7 @@ export class LoginService {
 
     // 密码登录
     passwordLogin(phone: string, password: string): Promise<ResultMessage> {
-        let url = this.baseUrl + "userkey/passwordLogin";
+        let url = this.baseUrl + "passwordLogin";
         let userkey = new Userkey();
         userkey.loginmsg = phone;
         userkey.credential = password;

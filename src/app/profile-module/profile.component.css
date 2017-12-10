@@ -1,0 +1,23 @@
+.cus-nav-header {
+    background-color: #1E89E0;
+}
+
+.cus-profile-content {
+    /* padding: 0 250px; */
+    width: 1300px;
+    margin: 0 auto;
+}
+
+.cus-profile-subcontent {
+    padding: 24px;
+    background: #fff;
+}
+
+.cus-profile-sider {
+    background:#fff;
+}
+
+.cus-outlet-content {
+    padding: 0 50px; 
+    min-height: 280px;
+}

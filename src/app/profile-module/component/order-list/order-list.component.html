@@ -1,0 +1,60 @@
+<div class="cus-ordertype-span">{{ordertypes[currentType]}}</div>
+<nz-table #nzTable 
+  [nzAjaxData]="orderList" 
+  [nzTotal]="total" 
+  [(nzPageIndex)]="current" 
+  [nzLoading]="isLoading" 
+  [nzPageSize]="6"
+  (nzPageIndexChange)="getOrders()"
+  [nzShowTotal]="true">
+  <thead nz-thead>
+    <tr>
+      <th nz-th [nzWidth]="4" class="cus-order-list-in-padding-title">
+        <span>时间</span>
+      </th>
+      <th nz-th [nzWidth]="8" class="cus-order-list-in-padding-title">
+        <span>内容</span>
+      </th>
+      <th nz-th [nzWidth]="3" class="cus-order-list-in-padding-title">
+        <span>金额</span>
+      </th>
+      <th nz-th [nzWidth]="3" class="cus-order-list-in-padding-title">
+        <span>状态</span>
+      </th>
+      <th nz-th [nzWidth]="6" class="cus-order-list-in-padding-title">
+        <span>操作</span>
+      </th>
+    </tr>
+  </thead>
+  <tbody nz-tbody>
+    <tr nz-tbody-tr *ngFor="let order of nzTable.data" class="cus-order-list-in-padding cut-order-item-row">
+      <td nz-td class="cus-order-list-in-padding-item">
+        <a>{{order.createTime}}</a>
+      </td>
+      <td nz-td class="cus-order-list-in-padding-item">
+        <img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2177693826,311469807&fm=27&gp=0.jpg" class="cus-order-item-img"
+        />
+        <div class="cus-order-item-content">
+          <p>{{order.shopName}}</p>
+          <span>订单号：{{order.orderNum}}</span>
+        </div>
+      </td>
+      <td nz-td class="cus-order-list-in-padding-item cus-order-item-money">
+        {{order.amount}}
+      </td>
+      <td nz-td class="cus-order-list-in-padding-item">
+        {{order.orderState}}
+      </td>
+      <td nz-td class="cus-order-list-in-padding-item">
+        <span>
+          <button nz-button [nzType]="'primary'">
+            <span>付款</span>
+          </button>
+          <button nz-button [nzType]="'dashed'">
+            <span>取消订单</span>
+          </button>
+        </span>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

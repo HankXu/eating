@@ -13,6 +13,7 @@ import { CoreModule } from './core-module/core-module.module';
 import { OrderModule } from './order-module/order.module';
 import { LoginModule } from './login-module/login.module';
 import { ShopModule } from './shop-module/shop.module';
+import { ProfileModule } from './profile-module/profile.module';
 
 
 
@@ -27,6 +28,7 @@ import { ShopModule } from './shop-module/shop.module';
     LoginModule,
     OrderModule,
     ShopModule,
+    ProfileModule,
     AppRoutingModule, //根路由模块要放在子路由模块后面
   ],
   bootstrap: [AppComponent]

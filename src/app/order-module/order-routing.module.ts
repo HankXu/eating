@@ -8,7 +8,7 @@ import { EOrderListComponent } from './components/e-order-list/e-order-list.comp
 
 const routes: Routes = [
     {
-        path: 'eating', 
+        path: 'home', 
         component: OrderComponent,
         children:[
             {

@@ -18,3 +18,22 @@
     color: #fff;
     background-color: #196cac;
 }
+
+.cut-avatar {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    height: 64px;
+}
+
+:host ::ng-deep .ant-avatar {
+    background-color: #1E89E0;
+    margin-top: 12px;
+    margin-right: 18px;
+}
+
+.cut-menu-anticon {
+    margin-right: 5px;
+}
+
+

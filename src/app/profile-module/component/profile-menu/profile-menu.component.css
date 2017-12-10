@@ -1,0 +1,21 @@
+.cus-menu {
+    height: 100%;
+}
+
+.cus-menu-title {
+    font-size: 150%;
+    font-weight: bold;
+}
+
+#cus-menu-items1 li, #cus-menu-items2 li {
+    font-size: 120%;
+    border: 0;
+}
+
+.cus-menu-title .anticon-idcard {
+    margin-right: 8px;
+}
+
+.cus-menu-title .anticon-shop {
+    margin-right: 8px;
+}

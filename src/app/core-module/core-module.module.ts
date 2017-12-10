@@ -2,7 +2,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 //导入service
-import { DemoService } from './service/demo.service'
+import { AuthService } from './service/auth.service'
 
 @NgModule({
   imports: [
@@ -18,7 +18,7 @@ export class CoreModule {
     return {
       ngModule: CoreModule,
       providers: [
-        DemoService,//新添加的服务就跟在后面就可以
+        AuthService,//新添加的服务就跟在后面就可以
       ]
     };
   }

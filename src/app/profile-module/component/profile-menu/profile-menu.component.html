@@ -1,0 +1,19 @@
+<ul nz-menu [nzMode]="'inline'" class="cus-menu">
+    <ul>
+        <li nz-menu-group>
+            <span title class="cus-menu-title"><i class="anticon anticon-idcard"></i>个人中心</span>
+            <ul id="cus-menu-items1">
+                <li nz-menu-item [nzSelected]="menuindex == 0"><a [routerLink]="['/profile']">概况</a></li>
+                <li nz-menu-item [nzSelected]="menuindex == 1"><a [routerLink]="['/profile/userinfo']">个人资料</a></li>
+                <li nz-menu-item [nzSelected]="menuindex == 2"><a [routerLink]="['/profile/addresses']">地址管理</a></li>
+                <li nz-menu-item [nzSelected]="menuindex == 3"><a [routerLink]="['/profile/password']">修改密码</a></li>
+            </ul>
+        </li>
+        <li nz-menu-group>
+            <span title class="cus-menu-title"><i class="anticon anticon-shop"></i>我的订单</span>
+            <ul id="cus-menu-items2">
+                <li nz-menu-item *ngFor="let ordertype of ordertypes; let i=index;" [nzSelected]="menuindex == (i + 4)"><a [routerLink]="['/profile/orders', i]">{{ordertype}}</a></li>
+            </ul>
+        </li>
+    </ul>
+</ul>

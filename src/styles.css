@@ -21,3 +21,10 @@ body .ant-layout{
 .cus-anchor-link a:active, .cus-anchor-link a:hover, .cus-category-item:hover a {
     color: #fff;
 }
+.cus-menu-item .cut-avatar .anticon {
+    margin-right: 0;
+}
+
+.cus-menu-item .cut-avatar .cut-menu-anticon {
+    margin-right: 5px;
+}

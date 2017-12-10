@@ -11,7 +11,7 @@
     </div>
     <div nz-col [nzSpan]="2">
       <li nz-menu-item class="cus-menu-item">
-        <a [routerLink]="['/eating/orderlist']" routerLinkActive="active" class="cus-menu-link">我的订单</a>
+        <a [routerLink]="['/profile/orders', 0]" class="cus-menu-link">我的订单</a>
       </li>
     </div>
     <div nz-col [nzSpan]="2">
@@ -19,11 +19,24 @@
         <a [routerLink]="['/']" class="cus-menu-link">加盟合作</a>
       </li>
     </div>
-    <div nz-col [nzSpan]="3" [nzOffset]="8">
+    <div nz-col [nzSpan]="4" [nzOffset]="7">
       <li nz-menu-item class="cus-menu-item">
-        <a [routerLink]="['/login']" routerLinkActive="active" class="cus-menu-link">
-          <i class="anticon anticon-dingding"></i> 登陆/注册
-        </a>
+        <div *ngIf="!isLogin" [routerLink]="['/login']" class="cus-menu-link cut-avatar">
+          <nz-avatar nzIcon="anticon anticon-login" nzSize="large"></nz-avatar> 登陆/注册
+        </div>
+        <div nz-submenu *ngIf="isLogin">
+          <div title class="cut-avatar" [routerLink]="['/profile']">
+            <nz-avatar nzIcon="anticon anticon-user" nzSize="large" nzSrc="{{userfaceimg}}"></nz-avatar> {{username}}
+          </div>
+          <ul>
+            <li nz-menu-item [routerLink]="['/profile']">
+              <i class="anticon anticon-solution cut-menu-anticon"></i> 个人中心</li>
+            <li nz-menu-item [routerLink]="['/profile/addresses']">
+              <i class="anticon anticon-environment-o cut-menu-anticon"></i> 我的地址</li>
+            <li nz-menu-item (click)="logout()">
+              <i class="anticon anticon-logout cut-menu-anticon"></i> 注销帐号</li>
+          </ul>
+        </div>
       </li>
     </div>
   </div>

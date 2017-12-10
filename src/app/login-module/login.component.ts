@@ -1,13 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { NgModel } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
+import { NgModel,FormsModule } from '@angular/forms';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 import { Md5 } from "ts-md5/dist/md5";
 
 import { NzMessageService } from 'ng-zorro-antd';
 // http请求服务
 import { LoginService } from './service/login.service';
-import { Router } from '@angular/router';
+import { AuthService } from '../core-module/service/auth.service';
+
+
 
 const phoneRegex = /^(13\d{9}$)|(15[0,1,2,3,5,6,7,8,9]\d{8}$)|(18[0,2,5,6,7,8,9]\d{8}$)|(147\d{8})$/;
 const passwordRegex = /^.{6,16}$/;
@@ -38,7 +40,8 @@ export class LoginComponent implements OnInit, OnDestroy {
         private location: Location,
         private _message: NzMessageService,
         private router: Router,
-        private loginService: LoginService
+        private loginService: LoginService,
+        private authService: AuthService
     ) { }
 
     // 初始化
@@ -66,7 +69,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     // 是否已登录
     isLogin() {
-        this.loginService.isLogin().then(
+        this.authService.reqIsLogin().then(
             resultMessage => {
                 let resultCode = resultMessage.serviceResult;
                 switch (resultCode) {
@@ -85,7 +88,7 @@ export class LoginComponent implements OnInit, OnDestroy {
                 }
             },
             error => {
-                this.createMessage('error', '服务器繁忙, 请稍后再试.');
+                console.log("网络环境差")
             }
         );
     }
