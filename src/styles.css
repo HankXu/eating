@@ -18,3 +18,6 @@ body .ant-layout{
 .cart-content .ant-card-body{
     padding: 0 24px;
 }
+.cus-anchor-link a:active, .cus-anchor-link a:hover, .cus-category-item:hover a {
+    color: #fff;
+}
