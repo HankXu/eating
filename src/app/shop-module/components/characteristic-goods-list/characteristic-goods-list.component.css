@@ -41,3 +41,13 @@
     font-weight: bold;
     color: #f54e4e;
 }
+.cus-desc-container{
+    flex-direction: column;
+    align-items: flex-start;
+}
+.cus-desc{
+    width: 60%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

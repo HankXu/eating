@@ -1,5 +1,7 @@
 <div nz-row class="cus-category-list">
-  <div nz-col [nzSpan]="4" *ngFor="let category of categoryList" class="cus-category-item">
-    <a href="#">{{category.categoryName}}</a>
-  </div>
+  <nz-anchor>
+    <div nz-col [nzSpan]="4" *ngFor="let category of categoryList" class="cus-category-item">
+      <nz-link nzHref="#{{category.categoryName}}" nzTitle="{{category.categoryName}}" class="cus-anchor-link"></nz-link>
+    </div>
+  </nz-anchor>
 </div>

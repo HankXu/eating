@@ -13,11 +13,15 @@
     border-radius: 4px;
     background: #3ea1f1;
 }
-.cus-category-item:hover>a{
+.cus-category-item:hover a{
     color: #fff;
 }
-.cus-category-item>a{
+.cus-category-item a{
     display: block;
     width: 100%;
     height: 100%;
+}
+
+.cus-anchor-link > a:hover {
+    color: #fff;
 }

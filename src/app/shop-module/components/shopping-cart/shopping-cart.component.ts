@@ -1,28 +1,42 @@
-import { Component, OnInit, OnChanges, DoCheck, Input, Output} from '@angular/core';
+import { Component, OnInit, OnChanges, DoCheck, Input, Output, OnDestroy} from '@angular/core';
+import { ShoppingCartService } from '../../service/shopping-cart.service';
+import { Goods } from '../../../models/Goods';
+import { Subscription } from 'rxjs/Subscription';
+import { InnerCartGoods } from '../../../models/InnerCartGoods';
 
 @Component({
   selector: 'app-shopping-cart',
   templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.css']
 })
-export class ShoppingCartComponent implements OnInit, DoCheck{
+export class ShoppingCartComponent implements OnInit, DoCheck, OnDestroy{
 
-  cartItems: any[] = [];
+  cartItems: InnerCartGoods[] = [];
 
   cartTotal: number = 0;
 
-  @Input() 
-  set cartItem( cartItem: any){
-    this.addItem(cartItem);
-    this.cartAcountCal();
-  }
 
-  addItem(item: any): void {
+  //用于取消订阅
+  subscription: Subscription;
+
+  // @Input() 
+  // set cartItem( cartItem: any){
+  //   this.addItem(cartItem);
+  //   this.cartAcountCal();
+  // }
+
+  addItem(item: Goods): void {
     let _target = this.cartItems.findIndex( curr => item.goodsId === curr.goodsId)
     if(_target !== -1){
       this.cartItems[_target].goodsCounts++;
     } else {
-      this.cartItems.push(item);
+      let newItem = {
+        goodsId: item.goodsId,
+        goodsPrice: item.goodsPrice,
+        goodsName: item.goodsName,
+        goodsCounts: 1
+      }
+      this.cartItems.push(newItem as InnerCartGoods);
     }
     
   }
@@ -42,8 +56,16 @@ export class ShoppingCartComponent implements OnInit, DoCheck{
   }
 
   
-  constructor() { 
-    this.cartAcountCal(); 
+  constructor(
+    private shoppingCartService: ShoppingCartService
+  ) { 
+    this.subscription = shoppingCartService
+                        .selectedGoods$
+                        .subscribe( selectedGoods => {
+                          //接收发射的新对象
+                          this.addItem(selectedGoods);
+                          this.cartAcountCal(); 
+                        });
   }
 
   ngOnInit() {
@@ -55,5 +77,11 @@ export class ShoppingCartComponent implements OnInit, DoCheck{
     this.checkAcount();
     this.cartAcountCal(); 
   }    
+
+  ngOnDestroy() {
+
+    //销毁时取消订阅
+    this.subscription.unsubscribe();
+  }
 
 }

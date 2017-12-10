@@ -7,14 +7,6 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class AllGoodsListComponent implements OnInit {
 
-  @Output()
-  getSelected = new EventEmitter<object>();
-
-  onSelect(selectedItem: object): void {
-    console.log(selectedItem);
-    this.getSelected.emit(selectedItem);
-  }
-
   constructor() { }
 
   ngOnInit() {

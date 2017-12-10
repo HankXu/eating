@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { ShoppingCartService } from '../../service/shopping-cart.service';
+import { Goods } from '../../../models/Goods';
 
 @Component({
   selector: 'app-characteristic-goods-list',
@@ -11,51 +13,59 @@ export class CharacteristicGoodsListComponent implements OnInit {
     categoryName: '早餐',
     goodsList: [
       {
-        id: 1,
-        goodsImg: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+        goodsId: 1,
+        shopId: 1,
+        goodsCategoryId: 1,
         goodsName: '红烧超模',
         goodsPrice: 1800,
-
+        goodsPhoto: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+        goodsDesc: '超级好吃超级好吃超级好吃超级好吃超级好吃超级好吃超级好吃',
+        salesAmount: 1000
       },
       {
-        id: 2,
-        goodsImg: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+        goodsId: 2,
+        shopId: 1,
+        goodsCategoryId: 1,
         goodsName: '红烧超模2',
-        goodsPrice: 1200,
-
+        goodsPrice: 1800,
+        goodsPhoto: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+        goodsDesc: '超级好吃',
+        salesAmount: 1000
       },
       {
-        id: 3,
-        goodsImg: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+        goodsId: 3,
+        shopId: 1,
+        goodsCategoryId: 1,
         goodsName: '红烧超模3',
-        goodsPrice: 18990,
-
+        goodsPrice: 180,
+        goodsPhoto: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+        goodsDesc: '超级好吃',
+        salesAmount: 100
       },
       {
-        id: 4,
-        goodsImg: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+        goodsId: 4,
+        shopId: 1,
+        goodsCategoryId: 1,
         goodsName: '红烧超模4',
-        goodsPrice: 38000,
-
-      },
-      {
-        id: 5,
-        goodsImg: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-        goodsName: '红烧超模5',
-        goodsPrice: 28000,
-
-      },
+        goodsPrice: 2800,
+        goodsPhoto: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+        goodsDesc: '超级好吃',
+        salesAmount: 2000
+      }
     ]
   };
 
-  @Output() onSelect = new EventEmitter<object>()
 
   select(id: number): void {
     console.log("选择触发");
-    this.onSelect.emit(this.speGoods.goodsList.find(curr => curr.id === id));
+
+    let selectedGoods = this.speGoods.goodsList.find(curr => curr.goodsId === id);
+    this.shoppingCartService.announceCurrentSelected(selectedGoods as Goods);
   }
 
-  constructor() { }
+  constructor(
+    private shoppingCartService: ShoppingCartService
+  ) { }
 
   ngOnInit() {
   }
