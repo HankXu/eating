@@ -1,3 +1,98 @@
-<p>
-  user-info works!
-</p>
+<div class="cus-title">个人资料</div>
+<div nz-row [nzType]="'flex'" [nzAlign]="'middle'" class="cus-row">
+  <div nz-col [nzSpan]="3" class="cus-col-label">
+    <span class="cus-label">头像</span>
+  </div>
+  <div nz-col [nzSpan]="4" [nzOffset]="1">
+    <nz-avatar class="cus-avatar" nzIcon="anticon anticon-user" nzSrc="{{userfaceimg}}"></nz-avatar>
+  </div>
+  <div nz-col [nzSpan]="4" [nzOffset]="2">
+    <button nz-button [nzType]="'primary'" (click)="showModal('修改头像', uploadimg)">
+      <span>修改头像</span>
+    </button>
+  </div>
+</div>
+<div nz-row [nzType]="'flex'" [nzAlign]="'middle'" class="cus-row">
+  <div nz-col [nzSpan]="3" class="cus-col-label">
+    <span class="cus-label">手机号码</span>
+  </div>
+  <div nz-col [nzSpan]="4" [nzOffset]="1">
+    <span class="cus-content">{{phone}}</span>
+  </div>
+  <div nz-col [nzSpan]="4" [nzOffset]="2">
+    <button nz-button [nzType]="'primary'" (click)="showModal('修改手机号', editPhone)">
+      <span>修改手机号</span>
+    </button>
+  </div>
+</div>
+<div nz-row [nzType]="'flex'" [nzAlign]="'middle'" class="cus-row">
+  <div nz-col [nzSpan]="3" class="cus-col-label">
+    <span class="cus-label">用户名</span>
+  </div>
+  <div nz-col [nzSpan]="4" [nzOffset]="1">
+    <span class="cus-content">{{username}}</span>
+  </div>
+  <div nz-col [nzSpan]="4" [nzOffset]="2">
+    <button nz-button [nzType]="'primary'" (click)="showModal('修改用户名', editUsername)">
+      <span>修改用户名</span>
+    </button>
+  </div>
+</div>
+
+
+
+<!-- 显示模态对话框之上传头像 -->
+<ng-template #uploadimg>
+  <div nz-row [nzType]="'flex'" [nzAlign]="'middle'" class="cus-row cus-model-div">
+    <div nz-col [nzSpan]="4" class="cus-col-label">
+      <span class="cus-label">头像预览</span>
+    </div>
+    <div nz-col [nzSpan]="20">
+      <nz-avatar class="cus-avatar" nzIcon="anticon anticon-user" nzSrc="{{newUserfaceimg}}"></nz-avatar>
+    </div>
+  </div>
+  <div nz-row class="cus-model-div">
+    <div nz-col [nzSpan]="20" [nzOffset]="4">
+      <button nz-button [nzType]="'primary'">
+        <span>上传头像</span>
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+<!-- 显示模态对话框之修改手机号码 -->
+<ng-template #editPhone>
+  <div nz-row [nzType]="'flex'" [nzAlign]="'middle'" class="cus-row cus-model-div">
+    <div nz-col [nzSpan]="4" class="cus-col-label">
+      <span class="cus-label">新手机号</span>
+    </div>
+    <div nz-col [nzSpan]="8" [nzOffset]="2">
+      <nz-input [(ngModel)]="newPhone" [nzPlaceHolder]="'手机号码'" [nzSize]="'default'" class="cus-input">
+      </nz-input>
+    </div>
+    <div nz-col [nzSpan]="8">
+      <button nz-button [nzType]="'primary'" (click)="getValidCode()">
+        <span>获取验证码</span>
+      </button>
+    </div>
+  </div>
+  <div nz-row class="cus-model-div">
+    <div nz-col [nzSpan]="8" [nzOffset]="6">
+      <nz-input [(ngModel)]="validCode" [nzPlaceHolder]="'验证码'" [nzSize]="'default'" class="cus-input">
+      </nz-input>
+    </div>
+  </div>
+</ng-template>
+
+<!-- 显示模态对话框之修改用户名 -->
+<ng-template #editUsername>
+  <div nz-row [nzType]="'flex'" [nzAlign]="'middle'" class="cus-row cus-model-div">
+    <div nz-col [nzSpan]="4" class="cus-col-label">
+      <span class="cus-label">新用户名</span>
+    </div>
+    <div nz-col [nzSpan]="8" [nzOffset]="2">
+      <nz-input [(ngModel)]="newUsername" [nzPlaceHolder]="'Username'" [nzSize]="'default'" class="cus-input">
+      </nz-input>
+    </div>
+  </div>
+</ng-template>

@@ -1,3 +1,58 @@
-<p>
-  user-addresses works!
-</p>
+<div class="cus-title">地址管理</div>
+<div>
+  <div nz-row [nzGutter]="8">
+    <div nz-col [nzSpan]="8" *ngFor="let m of n; let i = index">
+      <nz-card class="cus-address-item" (click)="editAddress('修改地址', addressModal, i)">
+        <ng-template #title>
+          姓名
+        </ng-template>
+        <ng-template #body>
+          <p>地址</p>
+          <p>手机</p>
+        </ng-template>
+        <ng-template #extra>
+          <span class="cus-delete-btn" (click)="delete(m);$event.stopPropagation();">删除</span>
+        </ng-template>
+      </nz-card>
+    </div>
+    <div nz-col [nzSpan]="8">
+      <nz-card class="cus-address-item cus-address-new-item" (click)="addAddress('添加新地址', addressModal)">
+        <ng-template #body>
+          <p>
+            <i class="anticon anticon-plus-circle-o"></i> 添加新的地址</p>
+        </ng-template>
+      </nz-card>
+    </div>
+  </div>
+</div>
+
+<!-- 显示模态对话框之地址管理 -->
+<ng-template #addressModal>
+  <div nz-row class="cus-modal-div">
+    <div nz-col [nzSpan]="4" class="cus-col-label">
+      <span class="cus-label">收货人姓名</span>
+    </div>
+    <div nz-col [nzSpan]="8" [nzOffset]="2">
+      <nz-input [nzPlaceHolder]="'姓名'" [nzSize]="'default'" class="cus-input">
+      </nz-input>
+    </div>
+  </div>
+  <div nz-row class="cus-modal-div">
+    <div nz-col [nzSpan]="4" class="cus-col-label">
+      <span class="cus-label">收货手机号</span>
+    </div>
+    <div nz-col [nzSpan]="8" [nzOffset]="2">
+      <nz-input [nzPlaceHolder]="'手机号码'" [nzSize]="'default'" class="cus-input">
+      </nz-input>
+    </div>
+  </div>
+  <div nz-row class="cus-modal-div">
+    <div nz-col [nzSpan]="4" class="cus-col-label">
+      <span class="cus-label">收货地址</span>
+    </div>
+    <div nz-col [nzSpan]="8" [nzOffset]="2">
+      <nz-input [nzPlaceHolder]="'收货地址'" [nzSize]="'default'" class="cus-input">
+      </nz-input>
+    </div>
+  </div>
+</ng-template>

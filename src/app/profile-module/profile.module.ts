@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 import { ProfileRoutingModule } from './profile-routing.module';
@@ -14,6 +15,7 @@ import { UserPasswordComponent } from './component/user-password/user-password.c
 import { OrderListComponent } from './component/order-list/order-list.component';
 import { OrderService } from './service/order.service';
 import { MenuService } from './service/menu.service.';
+import { NzModalService } from 'ng-zorro-antd';
 
 @NgModule({
   imports: [
@@ -21,6 +23,7 @@ import { MenuService } from './service/menu.service.';
     ProfileRoutingModule,
     SharedModule,
     NgZorroAntdModule,
+    FormsModule
   ],
   declarations: [
     ProfileComponent,
@@ -32,6 +35,6 @@ import { MenuService } from './service/menu.service.';
     UserPasswordComponent,
     OrderListComponent
   ],
-  providers: [OrderService, MenuService]
+  providers: [OrderService, MenuService, NzModalService]
 })
 export class ProfileModule { }

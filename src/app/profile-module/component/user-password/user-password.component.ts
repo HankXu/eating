@@ -13,7 +13,7 @@ export class UserPasswordComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.menuService.sethMenuIndex(3);
+    this.menuService.currentMenu(3);
   }
 
 }

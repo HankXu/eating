@@ -1,6 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 import { Http } from '@angular/http';
+import { Subject } from 'rxjs/Subject';
 
 // models
 import { ResultMessage } from '../../models/ResultMessage';
@@ -29,6 +30,18 @@ export class AuthService implements OnInit {
         this.userinfo = null;
     }
 
+    // 登录请求的观察者
+    private reqIsloginComplete = new Subject<boolean>();
+    reqIslogin$ = this.reqIsloginComplete.asObservable();
+
+    setIsLogin(isLogin: boolean) {
+        this.reqIsloginComplete.next(isLogin);
+    }
+
+    getIsLogin() {
+        this.setIsLogin(this.logining);
+    }
+
     // 请求登录状态api (供登录界面和导航栏调用, 其他模块只需要调用 isLogin() 即可)
     reqIsLogin(): Promise<ResultMessage> {
         let url = this.baseUrl + "isLogin";
@@ -40,15 +53,32 @@ export class AuthService implements OnInit {
             response => {
                 let resultMessage = response.json() as ResultMessage;
                 this.logining = resultMessage.resultParm.isLogin;
+                // 通知登录状态
+                this.setIsLogin(this.logining);
                 return resultMessage;
-            }
-            )
-            .catch(this.handleError)
+            }).catch(this.handleError)
     }
 
-    // 是否已登录
-    isLogin(): boolean {
-        return this.logining;
+    // 用户信息请求的观察者
+    private reqUserinfoComplete = new Subject<Userinfo>();
+    reqUserinfo$ = this.reqUserinfoComplete.asObservable();
+
+    setUserinfo(userinfo: Userinfo) {
+        this.reqUserinfoComplete.next(userinfo);
+    }
+
+    getUserinfo() {
+        if (this.logining) {
+            if (this.userinfo == null) {
+                //请求用户信息
+                this.reqUserinfo().then(resultMessage => this.userinfo);
+            } else {
+                this.setUserinfo(this.userinfo);
+            }
+        } else {
+            //用户未登录
+            this.setUserinfo(null);
+        }
     }
 
     // 请求用户信息api (供用户信息模块调用, 其他模块只需要调用 getUserinfo() 即可)
@@ -65,30 +95,9 @@ export class AuthService implements OnInit {
                 this.userinfo.username = resultMessage.resultParm.userinfo.username;
                 this.userinfo.faceimg = resultMessage.resultParm.userinfo.faceimg;
                 this.userinfo.phone = resultMessage.resultParm.phone;
+                this.setUserinfo(this.userinfo);
                 return resultMessage;
-            }
-            ).catch(this.handleError)
-    }
-
-    // 获取用户信息
-    getUserinfo() {
-        return new Promise<Userinfo>(
-            resolve => {
-                let promise = null;
-                if (this.logining) {
-                    if (this.userinfo == null) {
-                        //请求用户信息
-                        promise = this.reqUserinfo().then(resultMessage => this.userinfo);
-                    } else {
-                        promise = new Promise<Userinfo>(resolve => resolve(this.userinfo));
-                    }
-                } else {
-                    //用户未登录
-                    this.userinfo = null;
-                }
-                resolve(promise);
-            }
-        )
+            }).catch(this.handleError)
     }
 
     // 用户登出

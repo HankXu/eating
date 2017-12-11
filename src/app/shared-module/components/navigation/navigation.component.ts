@@ -25,6 +25,7 @@ export class NavigationComponent implements OnInit {
     this.username = '';
     this.isLogin = false;
 
+    this.recieveAnnounce();
     this.reqIsLogin();
   }
 
@@ -51,18 +52,7 @@ export class NavigationComponent implements OnInit {
 
   // 获取用户信息
   getUserinfo() {
-    this.authService.getUserinfo().then(
-      userinfo => {
-        if (userinfo != null) {
-          this.username = userinfo.username;
-          if (userinfo.faceimg == null) {
-            this.userfaceimg = '';
-          } else {
-            this.userfaceimg = 'http://localhost/eating/update/userfaceimg/' + userinfo.faceimg;
-          }
-        }
-      }
-    );
+    this.authService.getUserinfo();
   }
 
   // 用户登出
@@ -72,9 +62,9 @@ export class NavigationComponent implements OnInit {
         let resultCode = resultMessage.serviceResult;
         switch (resultCode) {
           case 1: {
-              this.userfaceimg = '';
-              this.username = '';
-              this.isLogin = false;
+            this.userfaceimg = '';
+            this.username = '';
+            this.isLogin = false;
             break;
           }
           default: {
@@ -83,6 +73,22 @@ export class NavigationComponent implements OnInit {
         }
       }
     );
+  }
+
+  // 定义通知
+  recieveAnnounce() {
+    // 接收通知
+    this.authService.reqUserinfo$.subscribe(userInfo => {
+      if (userInfo != null) {
+        this.username = userInfo.username;
+        if (userInfo.faceimg == null) {
+          this.userfaceimg = '';
+        } else {
+          this.userfaceimg = 'http://localhost/eating/update/userfaceimg/' + userInfo.faceimg;
+        }
+      }
+
+    });
   }
 
 }

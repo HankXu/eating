@@ -76,7 +76,7 @@ export class LoginComponent implements OnInit, OnDestroy {
                     case 1: {
                         if (resultMessage.resultParm.isLogin == true) {
                             console.log("login");
-                            this.router.navigate(['/eating']);
+                            this.router.navigate(['/home']);
                         }
                         break;
                     }

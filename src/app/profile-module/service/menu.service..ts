@@ -1,21 +1,15 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class MenuService {
 
-    setMenuIndex: any;
+    private changeMenuSource = new Subject<number>();
 
-    constructor(
-    ) { }
+    changeMenu$ = this.changeMenuSource.asObservable();
 
-    setMenuIndexMethod(setMenuIndex: any) {
-        this.setMenuIndex = setMenuIndex;
+    currentMenu(menuindex: number) {
+        this.changeMenuSource.next(menuindex);
     }
 
-    sethMenuIndex(menuIndex?: number) {
-        if (this.setMenuIndex != null) {
-            this.setMenuIndex(menuIndex);
-        }
-    }
-
-}
+};
