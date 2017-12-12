@@ -1,22 +1,22 @@
 <div class="cus-title">地址管理</div>
 <div>
   <div nz-row [nzGutter]="8">
-    <div nz-col [nzSpan]="8" *ngFor="let m of n; let i = index">
-      <nz-card class="cus-address-item" (click)="editAddress('修改地址', addressModal, i)">
+    <div nz-col [nzSpan]="8" *ngFor="let address of addressList">
+      <nz-card class="cus-address-item" (click)="editAddressModal('修改地址', addressModal, address.useraddressid)">
         <ng-template #title>
-          姓名
+          {{address.fullname}}
         </ng-template>
         <ng-template #body>
-          <p>地址</p>
-          <p>手机</p>
+          <p>{{address.address.substring(0, 18)}}{{address.address.length > 18? '...':''}}</p>
+          <p>{{address.phone}}</p>
         </ng-template>
         <ng-template #extra>
-          <span class="cus-delete-btn" (click)="delete(m);$event.stopPropagation();">删除</span>
+          <span class="cus-delete-btn" (click)="deleteAddressModal(address.useraddressid);$event.stopPropagation();">删除</span>
         </ng-template>
       </nz-card>
     </div>
     <div nz-col [nzSpan]="8">
-      <nz-card class="cus-address-item cus-address-new-item" (click)="addAddress('添加新地址', addressModal)">
+      <nz-card class="cus-address-item cus-address-new-item" (click)="addAddressModal('添加新地址', addressModal)">
         <ng-template #body>
           <p>
             <i class="anticon anticon-plus-circle-o"></i> 添加新的地址</p>
@@ -33,7 +33,7 @@
       <span class="cus-label">收货人姓名</span>
     </div>
     <div nz-col [nzSpan]="8" [nzOffset]="2">
-      <nz-input [nzPlaceHolder]="'姓名'" [nzSize]="'default'" class="cus-input">
+      <nz-input [nzPlaceHolder]="'姓名'" [(ngModel)]="addressPo.fullname" [nzSize]="'default'" class="cus-input">
       </nz-input>
     </div>
   </div>
@@ -42,7 +42,7 @@
       <span class="cus-label">收货手机号</span>
     </div>
     <div nz-col [nzSpan]="8" [nzOffset]="2">
-      <nz-input [nzPlaceHolder]="'手机号码'" [nzSize]="'default'" class="cus-input">
+      <nz-input [nzPlaceHolder]="'手机号码'" [(ngModel)]="addressPo.phone" [nzSize]="'default'" class="cus-input">
       </nz-input>
     </div>
   </div>
@@ -51,7 +51,7 @@
       <span class="cus-label">收货地址</span>
     </div>
     <div nz-col [nzSpan]="8" [nzOffset]="2">
-      <nz-input [nzPlaceHolder]="'收货地址'" [nzSize]="'default'" class="cus-input">
+      <nz-input [nzPlaceHolder]="'收货地址'" [(ngModel)]="addressPo.address" [nzSize]="'default'" class="cus-input">
       </nz-input>
     </div>
   </div>

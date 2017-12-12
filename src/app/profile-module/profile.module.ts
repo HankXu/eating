@@ -18,6 +18,9 @@ import { OrderService } from './service/order.service';
 import { MenuService } from './service/menu.service.';
 import { NzModalService } from 'ng-zorro-antd';
 import { UserinfoService } from './service/userinfo.service';
+import { UseraddressService } from './service/useraddress.service';
+
+import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
   imports: [
@@ -25,7 +28,8 @@ import { UserinfoService } from './service/userinfo.service';
     ProfileRoutingModule,
     SharedModule,
     NgZorroAntdModule,
-    FormsModule
+    FormsModule,
+    FileUploadModule
   ],
   declarations: [
     ProfileComponent,
@@ -37,6 +41,6 @@ import { UserinfoService } from './service/userinfo.service';
     UserPasswordComponent,
     OrderListComponent
   ],
-  providers: [NzMessageService, OrderService, MenuService, NzModalService, UserinfoService]
+  providers: [NzMessageService, OrderService, MenuService, NzModalService, UserinfoService, UseraddressService]
 })
 export class ProfileModule { }

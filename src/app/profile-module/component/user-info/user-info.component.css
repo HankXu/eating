@@ -32,3 +32,17 @@
     text-align: center;
     margin: 5px auto;
 }
+
+.cus-upload-input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
+
+.cus-upload-btn {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}

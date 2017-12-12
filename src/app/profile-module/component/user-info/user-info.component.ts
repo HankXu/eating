@@ -3,7 +3,7 @@ import { MenuService } from '../../service/menu.service.';
 import { AuthService } from '../../../core-module/service/auth.service';
 import { NzModalService } from 'ng-zorro-antd';
 import { NzMessageService } from 'ng-zorro-antd';
-// import { FileUploader } from 'ng2-file-upload';
+import { FileUploader } from 'ng2-file-upload';
 
 import { Userinfo } from '../../../models/Userinfo';
 import { UserinfoService } from '../../service/userinfo.service';
@@ -35,7 +35,7 @@ export class UserInfoComponent implements OnInit {
   timer;
 
   // 上传组件初始化
-  // uploader: FileUploader;
+  uploader: FileUploader;
 
   constructor(
     private menuService: MenuService,
@@ -58,35 +58,35 @@ export class UserInfoComponent implements OnInit {
     this.menuService.currentMenu(1);
     this.reqUserinfo();
 
-    // this.initUploadImg();
+    this.initUploadImg();
 
   }
 
-  // initUploadImg() {
-  //   this.uploader = new FileUploader({
-  //     url: "/eating/uploadFile",
-  //     method: "POST",
-  //     itemAlias: "file",
-  //     allowedFileType: ["image"],
-  //     autoUpload: false
-  //   });
-  // }
+  initUploadImg() {
+    this.uploader = new FileUploader({
+      url: "/eating/uploadFile",
+      method: "POST",
+      itemAlias: "file",
+      allowedFileType: ["image"],
+      autoUpload: true
+    });
+  }
 
-  // selectedFileOnChanged() {
-  //   // 这里是文件选择完成后的操作处理
-  //   this.uploader.queue[0].onSuccess = (response, status, headers) => {
-  //     // 上传文件成功   
-  //     if (status == 200) {
-  //       // 上传文件后获取服务器返回的数据
-  //       let resultMessage = JSON.parse(response);
-  //       this.newUserfaceimg = "http://localhost/eating/update/userfaceimg/" + resultMessage.resultParm.fileName;
-  //     } else {
-  //       // 上传文件后获取服务器返回的数据错误     
-  //       this.createMessage('error', '上传失败.');
-  //     }
-  //   };
-  //   this.uploader.queue[0].upload();
-  // }
+  selectedFileOnChanged() {
+    // 这里是文件选择完成后的操作处理
+    this.uploader.queue[0].onSuccess = (response, status, headers) => {
+      // 上传文件成功   
+      if (status == 200) {
+        // 上传文件后获取服务器返回的数据
+        let resultMessage = JSON.parse(response);
+        this.newUserfaceimg = "http://localhost/eating/update/temp/file/" + resultMessage.resultParm.fileName;
+      } else {
+        // 上传文件后获取服务器返回的数据错误
+        this.createMessage('error', '上传失败.');
+      }
+    };
+    this.uploader.queue[0].upload();
+  }
 
   //显示模态框
   showModal(titleTpl, contentTpl) {
@@ -125,9 +125,35 @@ export class UserInfoComponent implements OnInit {
 
   // 修改头像
   editFaceimg(faceimgName: string) {
-    if (faceimgName) {
-      this.createMessage('warning', '请输入正确的手机号码');
-  }}
+    if (faceimgName == '') {
+      this.createMessage('warning', '请先上传头像');
+    } else 　{
+      return this.userinfoService.editFaceimg(this.userinfo, faceimgName).then(
+        resultMessage => {
+          let resultCode = resultMessage.serviceResult;
+          switch (resultCode) {
+            case 1: {
+              this.createMessage('success', '修改头像成功');
+              // 刷新用户信息
+              this.reqUserinfo();
+              return Promise.resolve("resolve");
+            }
+            default: {
+              //其他错误
+              this.createMessage('error', '服务器繁忙, 请稍后再试.');
+              break;
+            }
+          }
+          return Promise.reject("操作失败, 不关闭模态框");
+        },
+        error => {
+          this.createMessage('error', '网络环境差.');
+          return Promise.reject("操作失败, 不关闭模态框");
+        }
+      );
+    }
+    return Promise.reject("操作失败, 不关闭模态框");
+  }
 
   // 修改手机号请求
   editPhone() {
@@ -175,13 +201,15 @@ export class UserInfoComponent implements OnInit {
               break;
             }
           }
+          return Promise.reject("操作失败, 不关闭模态框");
         },
         error => {
           this.createMessage('error', '服务器繁忙, 请稍后再试.');
+          return Promise.reject("操作失败, 不关闭模态框");
         }
       );
     }
-    return Promise.reject("reject");
+    return Promise.reject("操作失败, 不关闭模态框");
   }
 
   // 修改用户名请求
@@ -210,21 +238,25 @@ export class UserInfoComponent implements OnInit {
               break;
             }
           }
+          return Promise.reject("操作失败, 不关闭模态框");
         },
         error => {
           this.createMessage('error', '网络环境差.');
+          return Promise.reject("操作失败, 不关闭模态框");
         }
       );
     }
-    return Promise.reject("reject");
+    return Promise.reject("操作失败, 不关闭模态框");
   }
 
   //验证码按钮状态
   phoneNumChange() {
-    if (phoneRegex.test(this.newPhone)) {
-      this.isDisable = false;
-    } else {
-      this.isDisable = true;
+    if (this.timer == null) {
+      if (phoneRegex.test(this.newPhone)) {
+        this.isDisable = false;
+      } else {
+        this.isDisable = true;
+      }
     }
   };
 

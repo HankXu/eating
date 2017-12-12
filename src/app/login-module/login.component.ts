@@ -60,10 +60,12 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     //验证码按钮状态
     phoneNumChange() {
-        if (phoneRegex.test(this.phoneNum)) {
-            this.isDisable = false;
-        } else {
-            this.isDisable = true;
+        if (this.timer == null) {
+            if (phoneRegex.test(this.phoneNum)) {
+                this.isDisable = false;
+            } else {
+                this.isDisable = true;
+            }
         }
     };
 

@@ -53,10 +53,10 @@
   </div>
   <div nz-row class="cus-model-div">
     <div nz-col [nzSpan]="20" [nzOffset]="4">
-      <button nz-button [nzType]="'primary'">
+      <button nz-button [nzType]="'primary'" class="cus-upload-btn">
         <span>上传头像</span>
+        <input type="file" ng2FileSelect [uploader]="uploader" class="cus-upload-input" (change)="selectedFileOnChanged()"/>
       </button>
-      <!-- <input type="file" ng2FileSelect [uploader]="uploader" (change)="selectedFileOnChanged($event)" />       -->
     </div>
   </div>
 </ng-template>

@@ -78,7 +78,26 @@ export class UserinfoService {
             .then(response => response.json() as ResultMessage)
             .catch(this.handleError)
     }
-    
+
+    editFaceimg(userinfo: Userinfo, faceimgName: string): Promise<ResultMessage> {
+
+        let url = this.baseUrl + "userinfo/editFaceimg";
+
+        let userinfo2 = new Userinfo();
+        userinfo2.userinfoid = userinfo.userinfoid;
+        userinfo2.faceimg = faceimgName;
+
+        let data = {
+            userinfo: userinfo2
+        }
+
+        return this.http
+            .post(url, data)
+            .toPromise()
+            .then(response => response.json() as ResultMessage)
+            .catch(this.handleError)
+    }
+
 
     private handleError(error: any): Promise<any> {
         console.error('发生了错误', error);
