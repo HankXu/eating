@@ -4,7 +4,7 @@
     <span class="cus-label">头像</span>
   </div>
   <div nz-col [nzSpan]="4" [nzOffset]="1">
-    <nz-avatar class="cus-avatar" nzIcon="anticon anticon-user" nzSrc="{{userfaceimg}}"></nz-avatar>
+    <nz-avatar class="cus-avatar" nzIcon="anticon anticon-user" nzSrc="{{userinfo.faceimg}}"></nz-avatar>
   </div>
   <div nz-col [nzSpan]="4" [nzOffset]="2">
     <button nz-button [nzType]="'primary'" (click)="showModal('修改头像', uploadimg)">
@@ -17,7 +17,7 @@
     <span class="cus-label">手机号码</span>
   </div>
   <div nz-col [nzSpan]="4" [nzOffset]="1">
-    <span class="cus-content">{{phone}}</span>
+    <span class="cus-content">{{userinfo.phone}}</span>
   </div>
   <div nz-col [nzSpan]="4" [nzOffset]="2">
     <button nz-button [nzType]="'primary'" (click)="showModal('修改手机号', editPhone)">
@@ -30,7 +30,7 @@
     <span class="cus-label">用户名</span>
   </div>
   <div nz-col [nzSpan]="4" [nzOffset]="1">
-    <span class="cus-content">{{username}}</span>
+    <span class="cus-content">{{userinfo.username}}</span>
   </div>
   <div nz-col [nzSpan]="4" [nzOffset]="2">
     <button nz-button [nzType]="'primary'" (click)="showModal('修改用户名', editUsername)">
@@ -56,6 +56,7 @@
       <button nz-button [nzType]="'primary'">
         <span>上传头像</span>
       </button>
+      <!-- <input type="file" ng2FileSelect [uploader]="uploader" (change)="selectedFileOnChanged($event)" />       -->
     </div>
   </div>
 </ng-template>
@@ -67,12 +68,12 @@
       <span class="cus-label">新手机号</span>
     </div>
     <div nz-col [nzSpan]="8" [nzOffset]="2">
-      <nz-input [(ngModel)]="newPhone" [nzPlaceHolder]="'手机号码'" [nzSize]="'default'" class="cus-input">
+      <nz-input [(ngModel)]="newPhone" [nzPlaceHolder]="'手机号码'" (keyup)="phoneNumChange()" [nzSize]="'default'" class="cus-input">
       </nz-input>
     </div>
     <div nz-col [nzSpan]="8">
-      <button nz-button [nzType]="'primary'" (click)="getValidCode()">
-        <span>获取验证码</span>
+      <button nz-button [nzType]="'primary'" (click)="getValidCode()" [disabled]="isDisable">
+        <span>{{validCodeMessage}}</span>
       </button>
     </div>
   </div>

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { NzMessageService } from 'ng-zorro-antd';
 
 import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileComponent } from './profile.component';
@@ -16,6 +17,7 @@ import { OrderListComponent } from './component/order-list/order-list.component'
 import { OrderService } from './service/order.service';
 import { MenuService } from './service/menu.service.';
 import { NzModalService } from 'ng-zorro-antd';
+import { UserinfoService } from './service/userinfo.service';
 
 @NgModule({
   imports: [
@@ -35,6 +37,6 @@ import { NzModalService } from 'ng-zorro-antd';
     UserPasswordComponent,
     OrderListComponent
   ],
-  providers: [OrderService, MenuService, NzModalService]
+  providers: [NzMessageService, OrderService, MenuService, NzModalService, UserinfoService]
 })
 export class ProfileModule { }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AuthService } from '../../../core-module/service/auth.service';
 
@@ -16,7 +17,8 @@ export class NavigationComponent implements OnInit {
 
   // 构造器
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   // 初始化  
@@ -65,6 +67,7 @@ export class NavigationComponent implements OnInit {
             this.userfaceimg = '';
             this.username = '';
             this.isLogin = false;
+            this.router.navigate(['/login']);
             break;
           }
           default: {

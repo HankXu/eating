@@ -111,7 +111,7 @@ export class LoginComponent implements OnInit, OnDestroy {
                 }
             }, 1000);
 
-            this.loginService.getValidCode(this.phoneNum).then(
+            this.authService.getValidCode(this.phoneNum).then(
                 resultMessage => {
                     let resultCode = resultMessage.serviceResult;
                     switch (resultCode) {
@@ -205,7 +205,7 @@ export class LoginComponent implements OnInit, OnDestroy {
                 this.isLogining = true;
 
                 //登录请求
-                this.loginService.passwordLogin(this.phoneNum, Md5.hashStr(this.password).toString()).then(
+                this.loginService.passwordLogin(this.phoneNum, this.password).then(
                     resultMessage => {
                         let resultCode = resultMessage.serviceResult;
                         switch (resultCode) {

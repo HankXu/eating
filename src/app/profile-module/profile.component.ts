@@ -17,7 +17,6 @@ export class ProfileComponent implements OnInit {
 
     ngOnInit() {
         this.recieveAnnounce();
-        this.authService.getIsLogin();
     }
 
     // 定义通知
@@ -25,6 +24,7 @@ export class ProfileComponent implements OnInit {
         // 接收通知
         this.authService.reqIslogin$.subscribe(isLogin => {
             if (!isLogin) {
+                console.log("个人中心 验证登录状态" + isLogin);
                 this.router.navigate(['/login']);
             }
         });
