@@ -10,19 +10,19 @@
       </div>
     </div>
     <div nz-row class="cus-shop-list-container">
-      <div nz-col [nzSpan]="6" *ngFor="let shop of shopList">
+      <div nz-col [nzSpan]="6" *ngFor="let shopObj of shopList">
         <nz-card class="cus-cad-body">
           <ng-template #body>
-            <a href="#" class="cus-shop-link">
+            <a [routerLink]="['../../shop',shopObj.shopId]" class="cus-shop-link">
               <div class="cus-shop-card">
                 <div class="cus-shop-image-box">
-                  <img alt="example" width="80px" [src]="shop.shopLogo" />
+                  <img alt="example" width="80px" [src]="shopObj.shopLogo" />
                 </div>
                 <div class="cus-card-info">
-                  <div class="cus-card-name cus-card-item">{{shop.shopName}}</div>
-                  <div class="cus-card-rate cus-card-item"><nz-rate [ngModel]="shop.rate" [nzDisabled]="true"></nz-rate></div>
-                  <div class="cus-card-sales cus-card-item"> 月售 {{shop.sales}} 单</div>
-                  <div class="cus-card-consum cus-card-item"> 起送价：{{shop.mincost}} 元</div>
+                  <div class="cus-card-name cus-card-item">{{shopObj.shopName}}</div>
+                  <div class="cus-card-rate cus-card-item"><nz-rate [ngModel]="shopObj.rate" [nzDisabled]="true"></nz-rate></div>
+                  <div class="cus-card-sales cus-card-item"> 月售 {{shopObj.sales}} 单</div>
+                  <div class="cus-card-consum cus-card-item"> 起送价：{{shopObj.mincost}} 元</div>
                 </div>
               </div>
             </a>
