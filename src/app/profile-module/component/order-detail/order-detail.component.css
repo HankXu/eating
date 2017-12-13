@@ -1,0 +1,96 @@
+/* 顶部的标题 */
+.cus-orderdetail-title{
+    font-size: 150%;
+    margin-bottom: 5px;
+    font-weight: bold;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    box-shadow: 0px 1px 0px #ccc;
+}
+
+
+
+
+/* 订单表中的商家头像 */
+
+.cus-order-item-img {
+    width: 100px;
+    height: 100px;
+    float: left;
+    border-radius: 5%;
+}
+
+/* 订单列表中的商家名称以及订单号 */
+
+.cus-order-item-content {
+    padding-left: 20px;
+    float: left;
+    text-align: left;
+}
+
+.cus-order-item-content>.cus-order-item-content-title {
+    font-size: 16px;
+    font-weight: bold;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+.cus-order-item-content>.cus-order-item-content-button{
+    padding-top: 15px;
+}
+
+
+
+
+.cus-order-orderitem-table{
+    width:100%;
+    font-size: 15px;
+    border-collapse:collapse;
+    border:0px;
+}
+.cus-order-orderitem-table>thead>tr{
+    background-color:#eee;
+    height: 32px;
+    line-height: 32px;
+}
+.cus-order-orderitem-table td{
+    text-align: center;
+    height: 32px;
+    line-height:  32px;
+}
+.cus-order-orderitem-table>tbody>tr{
+    box-shadow: 0px 1px 0px #eee;
+}
+
+
+
+/* 总金额 */
+.cus-order-amounts{
+    height: 18px;
+    padding-top: 70px;
+    padding-right: 100px;
+    text-align: right;
+    font-size: 18px;
+}
+.cus-order-amounts>span{
+    font-size: 22px;
+    color: #f74342;
+}
+
+
+/* 配送地址信息部分 */
+.cus-order-address{
+    padding-top: 18px;
+    padding-left: 5px;
+}
+.cus-order-address-title{
+    font-size: 20px;
+    
+}
+.cus-order-address>P{
+    font-size: 14px;
+    padding-top: 10px;
+}
+.cus-order-address>P>span{
+    display: inline-block;
+    width:100px;
+}

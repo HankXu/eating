@@ -29,31 +29,46 @@
   <tbody nz-tbody>
     <tr nz-tbody-tr *ngFor="let order of nzTable.data" class="cus-order-list-in-padding cut-order-item-row">
       <td nz-td class="cus-order-list-in-padding-item">
-        <a>{{order.createTime}}</a>
+        <span>{{order.createtime}}</span>
       </td>
       <td nz-td class="cus-order-list-in-padding-item">
         <img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2177693826,311469807&fm=27&gp=0.jpg" class="cus-order-item-img"
         />
         <div class="cus-order-item-content">
-          <p>{{order.shopName}}</p>
-          <span>订单号：{{order.orderNum}}</span>
+          <p>{{order.shopname}}</p>
+          <span>订单号：{{order.ordernum}}</span>
         </div>
       </td>
       <td nz-td class="cus-order-list-in-padding-item cus-order-item-money">
-        {{order.amount}}
+        {{order.amounts}}
       </td>
       <td nz-td class="cus-order-list-in-padding-item">
-        {{order.orderState}}
+        {{order.status==0?"未支付":""}}
+        {{order.status==1?"已取消":""}}
+        {{order.status==2?"待接单":""}}
+        {{order.status==3?"已接单":""}}
+        {{order.status==4?"已完成订单":""}}
+        {{order.status==5?"已退单":""}}
       </td>
       <td nz-td class="cus-order-list-in-padding-item">
-        <span>
-          <button nz-button [nzType]="'primary'">
-            <span>付款</span>
-          </button>
-          <button nz-button [nzType]="'dashed'">
-            <span>取消订单</span>
-          </button>
-        </span>
+          <span>
+            <button *ngIf="order.status==0" nz-button [nzType]="'primary'" (click)="payOrder(order.ordernum)">
+              <span>付款</span>
+            </button>
+            <button *ngIf="order.status==0" nz-button [nzType]="'dashed'" (click)="cancelOrder(order.ordernum)">
+              <span>取消订单</span>
+            </button>
+            <button *ngIf="order.status==2 || order.status==3 || order.status==4" nz-button [nzType]="'danger'" (click)="returnOrder(order.ordernum)">
+              <span>退单</span>
+            </button>
+            <button *ngIf="order.status==3" nz-button [nzType]="'primary'" (click)="remindOrder(order.ordernum)">
+              <span>催单</span>
+            </button>
+            <button nz-button [nzType]="'default'" (click)="checkOrderDetail(order.ordernum)">
+              <span>查看详情</span>
+            </button>
+          </span>
+  
       </td>
     </tr>
   </tbody>
