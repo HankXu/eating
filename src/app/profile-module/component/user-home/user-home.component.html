@@ -1,3 +1,44 @@
-<p>
-  user-home works!
-</p>
+<div class="cus-title">个人中心</div>
+<div class="cus-userinfo-div">
+    <div nz-row [nzGutter]="8" nz-row [nzType]="'flex'" [nzJustify]="'space-around'" [nzAlign]="'middle'">
+        <div nz-col class="cus-userinfo-img" [nzSpan]="4">
+            <div class="cus-avatar-div">
+                <nz-avatar [routerLink]="['/profile/userinfo']" class="cus-avatar" nzIcon="anticon anticon-user" nzSrc="{{userfaceimg}}"></nz-avatar>
+            </div>
+        </div>
+        <div nz-col class="cus-userinfo-name" [nzSpan]="5">
+            <div *ngIf="username" class="cus-userinfo-box">点餐愉快
+                <p>{{username}}</p>
+                <p>( {{phone}} )</p>
+            </div>
+        </div>
+        <div nz-col class="cus-userinfo-packets" [nzSpan]="5">
+            <nz-tooltip [nzTitle]="'功能完善中'" [nzPlacement]="'bottom'">
+                <div nz-tooltip class="cus-userinfo-box">我的红包
+                    <p class="cus-user-packets-p">
+                        <span class="cus-big-number">0</span>个</p>
+                </div>
+            </nz-tooltip>
+        </div>
+        <div nz-col class="cus-userinfo-coin" [nzSpan]="5">
+            <nz-tooltip [nzTitle]="'功能完善中'" [nzPlacement]="'bottom'">
+                <div nz-tooltip class="cus-userinfo-box">我的金币
+                    <p class="cus-user-coin-p">
+                        <span class="cus-big-number">0</span>个</p>
+                </div>
+            </nz-tooltip>
+        </div>
+        <div nz-col class="cus-userinfo-balance" [nzSpan]="5">
+            <nz-tooltip [nzTitle]="'功能完善中'" [nzPlacement]="'bottom'">
+                <div nz-tooltip class="">余额
+                    <p class="cus-user-balance-p">
+                        <span class="cus-big-number">0.00</span> 元</p>
+                </div>
+            </nz-tooltip>
+        </div>
+    </div>
+</div>
+<div class="cus-title">最近订单</div>
+<div class="cus-orders-div">
+    订单表格
+</div>

@@ -1,0 +1,48 @@
+.cus-title {
+    font-size: 150%;
+    margin-bottom: 5px;
+}
+
+.cus-row .cus-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 75px;
+    /* background-color: #1E89E0; */
+    font-size: 468%;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cus-label {
+    font-weight: 900;
+}
+
+.cus-row {
+    margin: 40px auto;
+    font-size: 150%;
+}
+
+.cus-col-label {
+    text-align: right;
+}
+
+.cus-model-div {
+    text-align: center;
+    margin: 5px auto;
+}
+
+.cus-upload-input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
+
+.cus-upload-btn {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}

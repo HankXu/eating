@@ -18,7 +18,7 @@ export class ProfileMenuComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.menuService.setMenuIndexMethod(menuIndex => {this.menuindex = menuIndex});
+    this.menuService.changeMenu$.subscribe(menuindex => this.menuindex = menuindex);
   }
 
 }

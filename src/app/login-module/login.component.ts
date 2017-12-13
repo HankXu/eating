@@ -60,10 +60,12 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     //验证码按钮状态
     phoneNumChange() {
-        if (phoneRegex.test(this.phoneNum)) {
-            this.isDisable = false;
-        } else {
-            this.isDisable = true;
+        if (this.timer == null) {
+            if (phoneRegex.test(this.phoneNum)) {
+                this.isDisable = false;
+            } else {
+                this.isDisable = true;
+            }
         }
     };
 
@@ -76,7 +78,7 @@ export class LoginComponent implements OnInit, OnDestroy {
                     case 1: {
                         if (resultMessage.resultParm.isLogin == true) {
                             console.log("login");
-                            this.router.navigate(['/eating']);
+                            this.router.navigate(['/home']);
                         }
                         break;
                     }
@@ -111,7 +113,7 @@ export class LoginComponent implements OnInit, OnDestroy {
                 }
             }, 1000);
 
-            this.loginService.getValidCode(this.phoneNum).then(
+            this.authService.getValidCode(this.phoneNum).then(
                 resultMessage => {
                     let resultCode = resultMessage.serviceResult;
                     switch (resultCode) {
@@ -205,7 +207,7 @@ export class LoginComponent implements OnInit, OnDestroy {
                 this.isLogining = true;
 
                 //登录请求
-                this.loginService.passwordLogin(this.phoneNum, Md5.hashStr(this.password).toString()).then(
+                this.loginService.passwordLogin(this.phoneNum, this.password).then(
                     resultMessage => {
                         let resultCode = resultMessage.serviceResult;
                         switch (resultCode) {
