@@ -13,7 +13,6 @@ import { OrderRoutingModule } from './order-routing.module';
 import { OrderComponent } from './order.component';
 import { HomeComponent } from './components/home/home.component';
 import { ShopListComponent } from './components/shop-list/shop-list.component';
-import { EOrderListComponent } from './components/e-order-list/e-order-list.component';
 
 //引入共享的模块
 import { SharedModule } from '../shared-module/shared-module.module';
@@ -27,8 +26,7 @@ import { OrderService } from './service/order.service';
   declarations: [
     OrderComponent,
     HomeComponent,
-    ShopListComponent,
-    EOrderListComponent
+    ShopListComponent
   ],
   imports: [
     BrowserAnimationsModule,

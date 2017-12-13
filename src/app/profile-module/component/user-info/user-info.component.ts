@@ -68,24 +68,24 @@ export class UserInfoComponent implements OnInit {
       method: "POST",
       itemAlias: "file",
       allowedFileType: ["image"],
-      autoUpload: true
+      autoUpload: false
     });
   }
 
   selectedFileOnChanged() {
     // 这里是文件选择完成后的操作处理
-    this.uploader.queue[0].onSuccess = (response, status, headers) => {
+    this.uploader.queue[this.uploader.queue.length - 1].onSuccess = (response, status, headers) => {
       // 上传文件成功   
       if (status == 200) {
         // 上传文件后获取服务器返回的数据
         let resultMessage = JSON.parse(response);
-        this.newUserfaceimg = "http://localhost/eating/update/temp/file/" + resultMessage.resultParm.fileName;
+        this.newUserfaceimg = "eating/upload/temp/file/" + resultMessage.resultParm.fileName;
       } else {
         // 上传文件后获取服务器返回的数据错误
         this.createMessage('error', '上传失败.');
       }
     };
-    this.uploader.queue[0].upload();
+    this.uploader.queue[this.uploader.queue.length - 1].upload();
   }
 
   //显示模态框
@@ -314,7 +314,7 @@ export class UserInfoComponent implements OnInit {
         switch (resultCode) {
           case 1: {
             this.userinfo = resultMessage.resultParm.userinfo;
-            this.userinfo.faceimg = "http://localhost/eating/update/userfaceimg/" + this.userinfo.faceimg;
+            this.userinfo.faceimg = "eating/upload/userfaceimg/" + this.userinfo.faceimg;
             this.userinfo.phone = resultMessage.resultParm.phone;
             break;
           }
