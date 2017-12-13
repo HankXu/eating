@@ -38,7 +38,7 @@ export class OrderListComponent implements OnInit {
         this.current = 1;
         this.getOrders();
 
-        this.menuService.sethMenuIndex(this.currentType + 4);
+        this.menuService.currentMenu(this.currentType + 4);
 
         return params.get('searchType');
       }).toPromise();

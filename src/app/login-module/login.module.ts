@@ -13,7 +13,6 @@ import { LoginComponent } from './login.component';
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginService } from './service/login.service';
 
-
 @NgModule({
   declarations: [
     LoginComponent,

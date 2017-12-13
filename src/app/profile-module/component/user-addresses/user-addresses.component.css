@@ -1,0 +1,35 @@
+.cus-title {
+    font-size: 150%;
+    margin-bottom: 20px;
+}
+
+.cus-address-item {
+    border: 1px solid #cecece;
+    margin-bottom: 10px;
+}
+
+.cus-address-item:hover {
+    border: 1px solid #1e89e0 !important;
+    color: #1e89e0 !important;
+}
+
+.cus-delete-btn {
+    color: #FF0033;
+    cursor: pointer;
+}
+
+.cus-address-new-item {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    height: 134px;
+    font-size: 150%;
+}
+
+.cus-modal-div {
+    margin-bottom: 5px;
+}
+
+.cus-col-label {
+    text-align: right;
+}

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { Md5 } from "ts-md5/dist/md5";
 import 'rxjs/add/operator/toPromise';
 
 // models
@@ -15,21 +16,6 @@ export class LoginService {
     constructor(
         private http: Http
     ) { }
-
-    // 获取验证码
-    getValidCode(phone: string): Promise<ResultMessage> {
-        let url = this.baseUrl + "getValidCode";
-        let userkey = new Userkey();
-        userkey.loginmsg = phone;
-        let data = {
-            userkey: userkey
-        }
-        return this.http
-            .post(url, data)
-            .toPromise()
-            .then(response => response.json() as ResultMessage)
-            .catch(this.handleError)
-    }
 
     // 验证码登录
     messageLogin(phone: string, validCode: string): Promise<ResultMessage> {
@@ -52,7 +38,7 @@ export class LoginService {
         let url = this.baseUrl + "passwordLogin";
         let userkey = new Userkey();
         userkey.loginmsg = phone;
-        userkey.credential = password;
+        userkey.credential =  Md5.hashStr(password).toString();
         let data = {
             userkey: userkey
         }
