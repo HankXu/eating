@@ -23,6 +23,9 @@ import { ShopListService } from './service/shop-list.service';
 import { OrderService } from './service/order.service';
 
 
+import { FileUploadModule } from 'ng2-file-upload';
+
+
 @NgModule({
   declarations: [
     OrderComponent,
@@ -36,7 +39,8 @@ import { OrderService } from './service/order.service';
     ReactiveFormsModule,
     OrderRoutingModule,
     NgZorroAntdModule,
-    SharedModule
+    SharedModule,
+    FileUploadModule
   ],
   providers: [
     ShopListService, //这是订餐模块内部使用的服务

@@ -18,6 +18,8 @@ import { GoodsCategoryListComponent } from './components/goods-category-list/goo
 import { AllGoodsListComponent } from './components/all-goods-list/all-goods-list.component';
 import { CharacteristicGoodsListComponent } from './components/characteristic-goods-list/characteristic-goods-list.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { QualifiInfoComponent } from './components/qualifi-info/qualifi-info.component';
+
 
 @NgModule({
   imports: [
@@ -34,6 +36,7 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
     AllGoodsListComponent,
     CharacteristicGoodsListComponent,
     ShoppingCartComponent,
+    QualifiInfoComponent,
     ShopInfoBarComponent
   ],
 })

@@ -1,0 +1,19 @@
+.cus-qulifi-page{
+    background-color: #fff;
+    padding: 10px;
+}
+.cus-qulifi-img{
+    width: 100%;
+    max-height: 460px;
+}
+:host ::ng-deep .ant-carousel .slick-slide {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 60%;
+    height: 460px;
+    line-height: 460px;
+    /* background: #364d79; */
+    color: #fff;
+    overflow: hidden;
+  }

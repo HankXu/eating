@@ -1,0 +1,14 @@
+<nz-tabset class="cus-qulifi-page">
+  <nz-tab>
+    <ng-template #nzTabHeading>
+      商铺资质信息
+    </ng-template>
+    <div class="cus-qualifi-info-container">
+      <nz-carousel nzAutoPlay>
+        <div nz-carousel-content *ngFor="let qaImg of imgArray">
+          <img class="cus-qulifi-img" src="{{qaImg}}" alt="商家证件图片">
+        </div>
+      </nz-carousel>
+    </div>
+  </nz-tab>
+</nz-tabset>
