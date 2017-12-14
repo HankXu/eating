@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { Subscription } from 'rxjs/Subscription';
+import { Shop } from '../../../models/Shop';
+import { ShopService } from '../../service/shop.service';
 
 @Component({
   selector: 'app-shop-info-bar',
@@ -7,9 +11,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShopInfoBarComponent implements OnInit {
 
-  constructor() { }
+  // @Input() shopInfo: Shop = new Shop();
+  shopInfo: Shop = new Shop();
+
+  private subscription: Subscription;
+
+  constructor(
+    private shopService: ShopService,
+  ) {
+  }
 
   ngOnInit() {
+    this.subscription = this.shopService
+                          .shopInfo$
+                          .subscribe(
+                            shopInfo => {
+                              this.shopInfo = shopInfo
+                            }
+                          )
   }
 
 }

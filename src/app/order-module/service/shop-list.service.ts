@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { read } from 'fs';
+import { Shop } from '../../models/Shop';
+import { ResultMessage } from '../../models/ResultMessage';
 
 @Injectable()
 export class ShopListService {
@@ -9,10 +11,11 @@ export class ShopListService {
 
     private ipLocaUrl = 'http://api.map.baidu.com/location/ip?ak=09fjlm9Bgk7HMuaGCuDQgyTlfXQw5F3u';
 
+    //根据ip地址定位城市的接口URL
     private ipLocaUrlDev = '/eating/shopping/ipLocation';
 
     //获取商店列表的接口URL
-    private getShopListUrl = this.baseUrl + '/getShopes';
+    private getShopListUrl = '/eating/shopping/getNearbyShop';
 
     //在此声明需要使用的内置对象，框架会自动注入
     constructor(
@@ -25,7 +28,7 @@ export class ShopListService {
             .post(this.ipLocaUrlDev,null)
             .toPromise()
             .then(reponse => {
-                let res = reponse.json();
+                let res = reponse.json() as ResultMessage;
                 console.log(res);
                 if (res.serviceResult !== 1) {
                     return this.handleError("定位失败");
@@ -37,15 +40,27 @@ export class ShopListService {
     }
 
     //编写获取数据的方法
-    getShopList(): Promise<object[]> {
+    getShopList(city: string, address: string): Promise<Shop[]> {
+
+        let data = {
+            city,
+            address
+        }
 
         return this.http
-            .get(this.getShopListUrl)  //调用http内置的各个类型的获取方法，get/post/put/delete等
-            .toPromise()  //http方法返回的是observable对象，所以将其转换为Promise对象，也可以不转换直接用Observable对象，看你自己需求，因为两个都要现学
-            .then(response => response.json().shopes as object[])  //Promise技术的then方法，当请求成功时会进入这一个方法，调用你传入的处理方法，这里用了箭头表达式，不用这个也可以直接用普通的函数模式，
-            //response就是返回的信息，将它转换为JSON对象，然后取出对应的数据，这里我返回的格式是这样的：{shopes:{...}}
-            //后面的那个as没啥特别的意义，就是表示这个返回的值是个对象数组，让编辑器能知道
-            .catch(this.handleError)    //当请求出现错误的时候，会被catch捕获，它会调用你传入的错误处理方法。这里的错误处理会返回了Promise.reject，告诉调用service的方法请求失败了。
+            .post(this.getShopListUrl, data)
+            .toPromise()
+            .then(response => {
+                let res = response.json() as ResultMessage;
+                if(res.serviceResult !== 1){
+                    if(res.serviceResult === 3002){
+                        return this.handleError(res.serviceResult);
+                    }
+                    return this.handleError(res.resultInfo);
+                }
+                return res.resultParm.shops;
+            })
+            .catch(this.handleError)    
     }
 
     private handleError(error: any): Promise<any> {

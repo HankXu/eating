@@ -20,6 +20,8 @@ import { CharacteristicGoodsListComponent } from './components/characteristic-go
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { QualifiInfoComponent } from './components/qualifi-info/qualifi-info.component';
 
+import { ShopService } from './service/shop.service';
+
 
 @NgModule({
   imports: [
@@ -39,5 +41,8 @@ import { QualifiInfoComponent } from './components/qualifi-info/qualifi-info.com
     QualifiInfoComponent,
     ShopInfoBarComponent
   ],
+  providers: [
+    ShopService, //这是订餐模块内部使用的服务
+  ]
 })
 export class ShopModule { }

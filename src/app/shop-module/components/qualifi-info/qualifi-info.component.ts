@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
+import { ShopService } from '../../service/shop.service';
 
 @Component({
   selector: 'app-qualifi-info',
@@ -9,10 +11,22 @@ export class QualifiInfoComponent implements OnInit {
 
   imgArray = ['https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'];
 
-  constructor() { }
+  private subscription: Subscription;
+
+  constructor(
+    private shopService: ShopService
+  ) { }
 
   ngOnInit() {
-    this.imgArray = ['https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png','https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'];
+    this.subscription = this.shopService
+    .shopInfo$
+    .subscribe(
+      shopInfo => {
+        this.imgArray.push(shopInfo.businesslicense);
+        this.imgArray.push(shopInfo.cateringlicense);
+      }
+    )
+    // this.imgArray = ['https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png','https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'];
   }
 
 }

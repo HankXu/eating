@@ -4,17 +4,17 @@
       <img src="../../assets/logo.png" alt="商店logo" class="cus-shop-logo">
     </div>
     <div class="cus-info-box">
-      <h2>麻辣鸡鸡店</h2>
-      <div class="cus-shop-address">麻章区广东海洋大学小吃街</div>
+      <h2>{{shopInfo.shopname}}</h2>
+      <div class="cus-shop-address">{{shopInfo.shopaddress}}</div>
       <nz-rate [ngModel]="3" [nzDisabled]="true"></nz-rate>
     </div>
   </div>
   <div nz-col [nzSpan]="3" [nzOffset]="5" class="cus-other-info-item">
     <div class="cus-info-item-title">
-      销量
+      联系电话
     </div>
     <div class="cus-info-item-content">
-      1668 单
+      {{shopInfo.shippingphone}}
     </div>
   </div>
   <div nz-col [nzSpan]="3" class="cus-other-info-item">
@@ -22,7 +22,7 @@
       起送价
     </div>
     <div class="cus-info-item-content">
-      1888 元
+      {{shopInfo.mincost}} 元
     </div>
   </div>
   <div nz-col [nzSpan]="3" class="cus-other-info-item">
@@ -30,7 +30,7 @@
       营业时间
     </div>
     <div class="cus-info-item-content">
-      0:00 - 0:00
+      {{shopInfo.opentime}}
     </div>
   </div>
 </div>

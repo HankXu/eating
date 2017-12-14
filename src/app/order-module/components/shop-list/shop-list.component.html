@@ -13,21 +13,24 @@
       <div nz-col [nzSpan]="6" *ngFor="let shopObj of shopList">
         <nz-card class="cus-cad-body">
           <ng-template #body>
-            <a [routerLink]="['../../shop',shopObj.shopId]" class="cus-shop-link">
+            <a [routerLink]="['../../shop',shopObj.shopid]" class="cus-shop-link">
               <div class="cus-shop-card">
                 <div class="cus-shop-image-box">
-                  <img alt="example" width="80px" [src]="shopObj.shopLogo" />
+                  <img alt="商店Logo" width="80px" [src]="shopObj.shopphoto" />
                 </div>
                 <div class="cus-card-info">
-                  <div class="cus-card-name cus-card-item">{{shopObj.shopName}}</div>
-                  <div class="cus-card-rate cus-card-item"><nz-rate [ngModel]="shopObj.rate" [nzDisabled]="true"></nz-rate></div>
-                  <div class="cus-card-sales cus-card-item"> 月售 {{shopObj.sales}} 单</div>
+                  <div class="cus-card-name cus-card-item">{{shopObj.shopname}}</div>
+                  <div class="cus-card-rate cus-card-item"><nz-rate [ngModel]="'4'" [nzDisabled]="true"></nz-rate></div>
+                  <div class="cus-card-sales cus-card-item"> 营业时间：{{shopObj.opentime}}</div>
                   <div class="cus-card-consum cus-card-item"> 起送价：{{shopObj.mincost}} 元</div>
                 </div>
               </div>
             </a>
           </ng-template>
         </nz-card>
+      </div>
+      <div *ngIf="!hasShopTag" class="cus-no-shopList">
+        没有找到商店哦
       </div>
     </div>
   </div>

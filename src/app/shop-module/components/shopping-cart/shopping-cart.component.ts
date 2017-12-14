@@ -26,14 +26,14 @@ export class ShoppingCartComponent implements OnInit, DoCheck, OnDestroy{
   // }
 
   addItem(item: Goods): void {
-    let _target = this.cartItems.findIndex( curr => item.goodsId === curr.goodsId)
+    let _target = this.cartItems.findIndex( curr => item.goodsid === curr.goodsId)
     if(_target !== -1){
       this.cartItems[_target].goodsCounts++;
     } else {
       let newItem = {
-        goodsId: item.goodsId,
-        goodsPrice: item.goodsPrice,
-        goodsName: item.goodsName,
+        goodsId: item.goodsid,
+        goodsPrice: item.goodsprice,
+        goodsName: item.goodsname,
         goodsCounts: 1
       }
       this.cartItems.push(newItem as InnerCartGoods);
