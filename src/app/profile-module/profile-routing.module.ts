@@ -7,6 +7,7 @@ import { UserInfoComponent } from './component/user-info/user-info.component';
 import { UserPasswordComponent } from './component/user-password/user-password.component';
 import { OrderListComponent } from './component/order-list/order-list.component';
 import { OrderDetailComponent } from './component/order-detail/order-detail.component';
+import { OrderCreateorderComponent } from './component/order-createorder/order-createorder.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
       { path: 'password', component: UserPasswordComponent },
       { path: 'orders/:searchType', component: OrderListComponent },
       { path: 'orderdetail/:orderid', component: OrderDetailComponent },
+      { path: 'createorder', component: OrderCreateorderComponent },
       { path: '', component: UserHomeComponent }
     ]
   }
