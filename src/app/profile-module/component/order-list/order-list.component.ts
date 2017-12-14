@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap,Router } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 
 import { OrderService } from '../../service/order.service';
 import { ordertypes } from '../../profile.component';
 import { MenuService } from '../../service/menu.service.';
+import { NzModalService } from 'ng-zorro-antd';
+import { NzMessageService } from 'ng-zorro-antd';
+
 
 @Component({
   selector: 'app-order-list',
@@ -18,7 +21,7 @@ export class OrderListComponent implements OnInit {
   currentType: number;
 
   current = 1;
-  total = 200;
+  total = 1;
   isLoading = false;
 
   orderList = [];
@@ -26,6 +29,9 @@ export class OrderListComponent implements OnInit {
   constructor(
     private orderService: OrderService,
     private route: ActivatedRoute,
+    private router:Router,
+    private modalService: NzModalService,
+    private _message: NzMessageService,
     private menuService: MenuService
   ) { }
 
@@ -44,16 +50,61 @@ export class OrderListComponent implements OnInit {
       }).toPromise();
   }
 
+  //请求后台接口，返回用户的所有订单
   getOrders(): void {
     this.isLoading = true;
-
     console.log("searchType: " + this.currentType);
     console.log("pageindex: " + this.current);
 
     this.orderService
       .getOrderList(this.currentType, this.current)
-      .then(orders => this.orderList = orders)
-      .then(orders => this.isLoading = false);
+      .then(resultMessage => {
+        let resultCode = resultMessage.serviceResult;
+        switch (resultCode) {
+          case 1: {
+            this.orderList = resultMessage.resultParm.data;
+            this.total = resultMessage.resultParm.total;
+            break;
+          }
+          default: {
+            this.createMessage('error', '服务器繁忙, 请稍后再试.');
+            break;
+          }
+        }
+      })
+      .then(resultMessage => this.isLoading = false);
   }
 
+  //跳转到订单详情页面
+  checkOrderDetail(ordernum:number):void{
+    this.router.navigate(['/profile/orderdetail', ordernum]);
+  }
+
+  //点击付款按钮
+  payOrder(ordernum:number):void{
+    this._message.info("你点击了付款按钮");
+  }
+
+  //取消订单
+  cancelOrder(ordernum:number):void{
+    
+  }
+
+  //退单
+  returnOrder(ordernum:number):void{
+    
+  }
+
+  //催单
+  remindOrder(ordernum:number):void{
+    
+  }
+
+
+
+
+  // Message全局提示
+  createMessage = (type, text) => {
+    this._message.create(type, text);
+  };
 }
