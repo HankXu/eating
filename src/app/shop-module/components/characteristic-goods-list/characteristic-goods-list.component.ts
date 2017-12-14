@@ -1,6 +1,10 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
+
 import { ShoppingCartService } from '../../service/shopping-cart.service';
 import { Goods } from '../../../models/Goods';
+import { ShopService } from '../../service/shop.service';
+import { GroupedGoods } from '../../../models/GroupedGoods';
 
 @Component({
   selector: 'app-characteristic-goods-list',
@@ -9,65 +13,26 @@ import { Goods } from '../../../models/Goods';
 })
 export class CharacteristicGoodsListComponent implements OnInit {
 
-  speGoods = {
-    categoryName: '早餐',
-    goodsList: [
-      {
-        goodsId: 1,
-        shopId: 1,
-        goodsCategoryId: 1,
-        goodsName: '红烧超模',
-        goodsPrice: 1800,
-        goodsPhoto: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-        goodsDesc: '超级好吃超级好吃超级好吃超级好吃超级好吃超级好吃超级好吃',
-        salesAmount: 1000
-      },
-      {
-        goodsId: 2,
-        shopId: 1,
-        goodsCategoryId: 1,
-        goodsName: '红烧超模2',
-        goodsPrice: 1800,
-        goodsPhoto: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-        goodsDesc: '超级好吃',
-        salesAmount: 1000
-      },
-      {
-        goodsId: 3,
-        shopId: 1,
-        goodsCategoryId: 1,
-        goodsName: '红烧超模3',
-        goodsPrice: 180,
-        goodsPhoto: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-        goodsDesc: '超级好吃',
-        salesAmount: 100
-      },
-      {
-        goodsId: 4,
-        shopId: 1,
-        goodsCategoryId: 1,
-        goodsName: '红烧超模4',
-        goodsPrice: 2800,
-        goodsPhoto: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-        goodsDesc: '超级好吃',
-        salesAmount: 2000
-      }
-    ]
-  };
-
+  @Input() groupedGoods: GroupedGoods;
 
   select(id: number): void {
-    console.log("选择触发");
+    console.log("选择触发"+id+this.groupedGoods.goods.length);
 
-    let selectedGoods = this.speGoods.goodsList.find(curr => curr.goodsId === id);
+    let selectedGoods = this.groupedGoods.goods.find(curr => curr.goodsid == id);
+
+    console.log(selectedGoods);
     this.shoppingCartService.announceCurrentSelected(selectedGoods as Goods);
   }
 
   constructor(
-    private shoppingCartService: ShoppingCartService
+    private shoppingCartService: ShoppingCartService,
+    private shopService: ShopService
   ) { }
 
+
+
   ngOnInit() {
+    
   }
 
 }

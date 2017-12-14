@@ -1,10 +1,10 @@
 export class Goods {
-    goodsId: number;
-    shopId: number;
-    goodsCategoryId: number;
-    goodsName: string;
-    goodsPrice: number;
-    goodsPhoto: string;
-    goodsDesc: string;
-    salesAmount: number;
+    goodsid: number;
+    shopid: number;
+    goodscategoryid: number;
+    goodsname: string;
+    goodsprice: number;
+    goodsphoto: string;
+    goodsdesc: string;
+    salesamount: number;
 }

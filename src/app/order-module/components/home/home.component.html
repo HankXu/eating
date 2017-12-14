@@ -1,6 +1,5 @@
 <div nz-row class="cus-map">
   <div nz-col [nzSpan]="12">
-    <form nz-form [nzLayout]="'inline'">
       <div nz-row [nzGutter]="8">
         <div nz-col [nzSpan]="21">
           <nz-input-group [nzSize]="'large'" [nzCompact]="true">
@@ -14,17 +13,16 @@
               </nz-select> -->
             </div>
             <div nz-col [nzSpan]="18">
-              <input [ngModel]="address" nz-input name="address" [nzSize]="'large'" placeholder="请输入收货地址" class="cus-address-input">
+              <input [(ngModel)]="address" nz-input name="address" [nzSize]="'large'" placeholder="请输入收货地址" class="cus-address-input">
             </div>
           </nz-input-group>
         </div>
         <div nz-col [nzSpan]="3">
-          <button nz-button [nzType]="'primary'" class="cus-search-btn" type="submit">
+          <button nz-button [nzType]="'primary'" (click)="searchNearbyShop()" class="cus-search-btn" type="submit">
             <i class="anticon anticon-search"></i>
             <span>搜索</span>
           </button>
         </div>
       </div>
-    </form>
   </div>
 </div>

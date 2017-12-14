@@ -1,4 +1,4 @@
 <app-goods-category-list></app-goods-category-list>
 <div class="cus-goods-container">
-  <app-characteristic-goods-list></app-characteristic-goods-list>
+  <app-characteristic-goods-list *ngFor="let groupedGoods of groupedGoodsList" [groupedGoods]="groupedGoods"></app-characteristic-goods-list>
 </div>
