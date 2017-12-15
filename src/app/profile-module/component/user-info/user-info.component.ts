@@ -64,7 +64,7 @@ export class UserInfoComponent implements OnInit {
 
   initUploadImg() {
     this.uploader = new FileUploader({
-      url: "/eating/uploadFile",
+      url: "/eating-user/uploadFile",
       method: "POST",
       itemAlias: "file",
       allowedFileType: ["image"],
