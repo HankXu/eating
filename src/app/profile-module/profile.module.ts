@@ -14,6 +14,8 @@ import { ProfileBreadcrumbComponent } from './component/profile-breadcrumb/profi
 import { UserInfoComponent } from './component/user-info/user-info.component';
 import { UserPasswordComponent } from './component/user-password/user-password.component';
 import { OrderListComponent } from './component/order-list/order-list.component';
+import { OrderDetailComponent } from './component/order-detail/order-detail.component';
+import { OrderCreateorderComponent } from './component/order-createorder/order-createorder.component';
 import { OrderService } from './service/order.service';
 import { MenuService } from './service/menu.service.';
 import { NzModalService } from 'ng-zorro-antd';
@@ -39,7 +41,9 @@ import { FileUploadModule } from 'ng2-file-upload';
     ProfileBreadcrumbComponent,
     UserInfoComponent,
     UserPasswordComponent,
-    OrderListComponent
+    OrderListComponent,
+    OrderDetailComponent,
+    OrderCreateorderComponent
   ],
   providers: [NzMessageService, OrderService, MenuService, NzModalService, UserinfoService, UseraddressService]
 })
