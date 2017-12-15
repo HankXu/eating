@@ -21,6 +21,7 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
 import { QualifiInfoComponent } from './components/qualifi-info/qualifi-info.component';
 
 import { ShopService } from './service/shop.service';
+import { SortwayService } from './service/sortway.service';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { ShopService } from './service/shop.service';
   ],
   providers: [
     ShopService, //这是订餐模块内部使用的服务
+    SortwayService,  //处理排序方式的服务类
   ]
 })
 export class ShopModule { }

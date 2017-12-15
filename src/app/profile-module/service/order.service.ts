@@ -7,11 +7,12 @@ import { ResultMessage } from '../../models/ResultMessage';
 @Injectable()
 export class OrderService {
     // private baseUrl = 'https://easy-mock.com/mock/5a279c9967fd7c19aa08e508';
-    private baseUrl = '/eating/order';
+    private baseUrl = '/eating-user/order';
 
     //获取商店列表的接口URL
     private getOrderListUrl = this.baseUrl + '/getOrderList';
     private cancelOrderUrl = this.baseUrl + '/cancelOrder';
+    private remindOrderUrl = this.baseUrl + '/remindOrder';
 
     //在此声明需要使用的内置对象，框架会自动注入
     constructor(
@@ -22,12 +23,12 @@ export class OrderService {
     getOrderList(searchType: number, pageIndex: number): Promise<ResultMessage> {
         
         if(searchType == 0){
-            searchType == null;
+            searchType = null;
         }else{
             searchType--;//减1是因为订单状态和index正好差值为1，请参见../profile.component.ts文件中关于订单状态的说明
         }
         const body = {
-            "pageinfovo":{
+            "pageinfo":{
                 "size":"6",
                 "indexPageNum":pageIndex,
                 "sortFieldNme":"orderid",
@@ -45,10 +46,10 @@ export class OrderService {
     }
 
 
-    cancelOrder(ordernum:String): Promise<ResultMessage> {
+    cancelOrder(orderid:String): Promise<ResultMessage> {
         const body = {
             "order":{
-                "ordernum":ordernum
+                "orderid":orderid
             }
         }
         return this.http
@@ -58,6 +59,18 @@ export class OrderService {
             .catch(this.handleError);
     }
 
+    remindOrder(orderid:String): Promise<ResultMessage> {
+        const body = {
+            "order":{
+                "orderid":orderid
+            }
+        }
+        return this.http
+            .post(this.remindOrderUrl,body)
+            .toPromise()
+            .then(response => response.json() as ResultMessage)
+            .catch(this.handleError);
+    }
 
 
 

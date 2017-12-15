@@ -12,10 +12,10 @@ export class ShopListService {
     private ipLocaUrl = 'http://api.map.baidu.com/location/ip?ak=09fjlm9Bgk7HMuaGCuDQgyTlfXQw5F3u';
 
     //根据ip地址定位城市的接口URL
-    private ipLocaUrlDev = '/eating/shopping/ipLocation';
+    private ipLocaUrlDev = '/eating-user/shopping/ipLocation';
 
     //获取商店列表的接口URL
-    private getShopListUrl = '/eating/shopping/getNearbyShop';
+    private getShopListUrl = '/eating-user/shopping/getNearbyShop';
 
     //在此声明需要使用的内置对象，框架会自动注入
     constructor(

@@ -20,8 +20,8 @@ export class ShopService{
 
     shop_error$ = this.shop_error.asObservable();
 
-    getGoodsInShopUrl: string  = '/eating/shopping/getGoodsInShop';
-    getShopInfoUrl: string = '/eating/shopping/getShopInfo';
+    getGoodsInShopUrl: string  = '/eating-user/shopping/getGoodsInShop';
+    getShopInfoUrl: string = '/eating-user/shopping/getShopInfo';
 
     constructor(
         private http: Http

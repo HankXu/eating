@@ -64,7 +64,7 @@ export class UserInfoComponent implements OnInit {
 
   initUploadImg() {
     this.uploader = new FileUploader({
-      url: "/eating/uploadFile",
+      url: "/eating-user/uploadFile",
       method: "POST",
       itemAlias: "file",
       allowedFileType: ["image"],
@@ -79,7 +79,7 @@ export class UserInfoComponent implements OnInit {
       if (status == 200) {
         // 上传文件后获取服务器返回的数据
         let resultMessage = JSON.parse(response);
-        this.newUserfaceimg = "eating/upload/temp/file/" + resultMessage.resultParm.fileName;
+        this.newUserfaceimg = "eating-user/upload/temp/file/" + resultMessage.resultParm.fileName;
       } else {
         // 上传文件后获取服务器返回的数据错误
         this.createMessage('error', '上传失败.');
@@ -314,7 +314,7 @@ export class UserInfoComponent implements OnInit {
         switch (resultCode) {
           case 1: {
             this.userinfo = resultMessage.resultParm.userinfo;
-            this.userinfo.faceimg = "eating/upload/userfaceimg/" + this.userinfo.faceimg;
+            this.userinfo.faceimg = "eating-user/upload/userfaceimg/" + this.userinfo.faceimg;
             this.userinfo.phone = resultMessage.resultParm.phone;
             break;
           }

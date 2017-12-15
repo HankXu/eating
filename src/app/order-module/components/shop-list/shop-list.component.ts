@@ -36,6 +36,11 @@ export class ShopListComponent implements OnInit {
         shops => {
         this.shopList = shops;
         this.hasShopTag = true;
+        let locatedInfo = {
+          address: address,
+          geoHash: ''
+        }
+        localStorage.setItem("locatedInfo", JSON.stringify(locatedInfo));
         console.log(this.shopList);
       }, 
       error => {

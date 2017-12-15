@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
 import { ShopService } from '../../service/shop.service';
+import { SortwayService } from '../../service/sortway.service';
 
 @Component({
   selector: 'app-shop-sub-nav',
@@ -16,8 +17,13 @@ export class ShopSubNavComponent implements OnInit {
   sortType: string = 'default';
 
   constructor(
-    private shopService: ShopService
+    private shopService: ShopService,
+    private sortwayService: SortwayService
   ) { }
+
+  sortedWayChage(sortedWay: string) {
+    this.sortwayService.announceCurrentSortway(sortedWay);
+  }
 
   ngOnInit() {
     this.subscription = this.shopService

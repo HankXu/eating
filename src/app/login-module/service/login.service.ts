@@ -10,7 +10,7 @@ import { Userkey } from '../../models/Userkey';
 @Injectable()
 export class LoginService {
     // baseUrl
-    private baseUrl = '/eating/userkey/';
+    private baseUrl = '/eating-user/userkey/';
 
     // 构造器
     constructor(

@@ -12,7 +12,7 @@ import { Userkey } from '../../models/Userkey';
 export class AuthService implements OnInit {
 
     // baseUrl
-    private baseUrl = '/eating/';
+    private baseUrl = '/eating-user/';
 
     // 是否已登录 标记
     private logining: boolean;
