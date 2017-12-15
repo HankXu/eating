@@ -1,5 +1,5 @@
 {
-    "/eating": {
+    "/eating-user": {
       "target": "http://localhost"
     }
   }
