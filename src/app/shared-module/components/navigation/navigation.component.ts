@@ -87,7 +87,7 @@ export class NavigationComponent implements OnInit {
         if (userInfo.faceimg == null) {
           this.userfaceimg = '';
         } else {
-          this.userfaceimg = 'eating/upload/userfaceimg/' + userInfo.faceimg;
+          this.userfaceimg = 'eating-user/upload/userfaceimg/' + userInfo.faceimg;
         }
       }
 
