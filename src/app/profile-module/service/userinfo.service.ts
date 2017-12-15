@@ -12,7 +12,7 @@ import { Userkey } from '../../models/Userkey';
 export class UserinfoService {
 
     // baseUrl
-    private baseUrl = '/eating/';
+    private baseUrl = '/eating-user/';
 
     // 构造器
     constructor(

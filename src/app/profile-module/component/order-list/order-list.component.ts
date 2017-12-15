@@ -81,23 +81,53 @@ export class OrderListComponent implements OnInit {
   }
 
   //点击付款按钮
-  payOrder(ordernum:number):void{
+  payOrder(orderid:number):void{
     this._message.info("你点击了付款按钮");
   }
 
   //取消订单
-  cancelOrder(ordernum:number):void{
-    
+  cancelOrder(orderid:String):void{
+    this.orderService
+    .cancelOrder(orderid)
+    .then(resultMessage => {
+      let resultCode = resultMessage.serviceResult;
+      switch (resultCode) {
+        case 1: {
+          this.getOrders();
+          break;
+        }
+        default: {
+          this.createMessage('error', '服务器繁忙, 请稍后再试.');
+          break;
+        }
+      }
+    })
+    .then(resultMessage => this.isLoading = false);
   }
 
   //退单
-  returnOrder(ordernum:number):void{
+  returnOrder(orderid:String):void{
     
   }
 
   //催单
-  remindOrder(ordernum:number):void{
-    
+  remindOrder(orderid:String):void{
+    this.orderService
+    .remindOrder(orderid)
+    .then(resultMessage => {
+      let resultCode = resultMessage.serviceResult;
+      switch (resultCode) {
+        case 1: {
+          this._message.create("success", `催单成功，请耐心等待`);
+          break;
+        }
+        default: {
+          this.createMessage('error', '服务器繁忙, 请稍后再试.');
+          break;
+        }
+      }
+    })
+    .then(resultMessage => this.isLoading = false);
   }
 
 

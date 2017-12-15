@@ -11,7 +11,7 @@ import { Useraddress } from '../../models/Useraddress';
 export class UseraddressService {
 
     // baseUrl
-    private baseUrl = '/eating/userAddress/';
+    private baseUrl = '/eating-user/userAddress/';
 
     // 构造器
     constructor(
