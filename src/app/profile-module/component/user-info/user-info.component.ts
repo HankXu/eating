@@ -48,7 +48,7 @@ export class UserInfoComponent implements OnInit {
   ngOnInit() {
     this.userinfo = new Userinfo();
     this.newUsername = '';
-    this.newUserfaceimg = '';
+    this.newUserfaceimg = null;
     this.newPhone = '';
     this.validCode = '';
 
@@ -68,7 +68,7 @@ export class UserInfoComponent implements OnInit {
       method: "POST",
       itemAlias: "file",
       allowedFileType: ["image"],
-      autoUpload: false
+      autoUpload: true
     });
   }
 
@@ -79,6 +79,9 @@ export class UserInfoComponent implements OnInit {
       if (status == 200) {
         // 上传文件后获取服务器返回的数据
         let resultMessage = JSON.parse(response);
+        // if (this.userinfo.faceimg != null) {
+        //   this.userinfo.faceimg = "eating-user/upload/userfaceimg/" + this.userinfo.faceimg;
+        // }
         this.newUserfaceimg = "eating-user/upload/temp/file/" + resultMessage.resultParm.fileName;
       } else {
         // 上传文件后获取服务器返回的数据错误
@@ -111,7 +114,7 @@ export class UserInfoComponent implements OnInit {
       },
       onCancel: () => {
         this.newUsername = '';
-        this.newUserfaceimg = '';
+        this.newUserfaceimg = null;
         this.newPhone = '';
         this.validCode = '';
 
@@ -314,7 +317,9 @@ export class UserInfoComponent implements OnInit {
         switch (resultCode) {
           case 1: {
             this.userinfo = resultMessage.resultParm.userinfo;
-            this.userinfo.faceimg = "eating-user/upload/userfaceimg/" + this.userinfo.faceimg;
+            if (this.userinfo.faceimg != null) {
+              this.userinfo.faceimg = "eating-user/upload/userfaceimg/" + this.userinfo.faceimg;
+            }
             this.userinfo.phone = resultMessage.resultParm.phone;
             break;
           }
