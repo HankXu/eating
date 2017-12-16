@@ -24,7 +24,6 @@ export class ShoppingCartComponent implements OnInit, DoCheck, OnDestroy{
 
   isOpenSubscription: Subscription;
 
-
   constructor(
     private shoppingCartService: ShoppingCartService,
     private shopService: ShopService
@@ -61,19 +60,15 @@ export class ShoppingCartComponent implements OnInit, DoCheck, OnDestroy{
   }
 
   ngOnInit() {
-    
-  }
-
-  //当触发检测的时候检查是否有小于0的选项并重算总价，有些浪费资源，但是一下没找到其他解决办法
-  ngDoCheck() {
     this.subscription = this.shoppingCartService
     .selectedGoods$
     .subscribe( selectedGoods => {
       //接收发射的新对象
       this.addItem(selectedGoods);
       this.cartAcountCal(); 
+      
     });
-
+    
     this.isOpenSubscription = this.shopService
     .shopInfo$
     .subscribe(
@@ -81,7 +76,10 @@ export class ShoppingCartComponent implements OnInit, DoCheck, OnDestroy{
         this.isOpen = shopInfo.isonline === 1;
       }
     )
+  }
 
+  //当触发检测的时候检查是否有小于0的选项并重算总价，有些浪费资源，因为暂时没法子监听number input的事件。
+  ngDoCheck() {
     this.checkAcount();
     this.cartAcountCal(); 
   }    

@@ -73,16 +73,6 @@ export class ShopService{
                 this.shop_error.next(error);
             }
         )
-
-        // .then(response => {
-        //     let res = response.json() as ResultMessage;
-        //     if(res.serviceResult !== 1){
-        //         return this.handleError(res.resultInfo);
-        //     }
-        //     console.log(res.resultParm.shopinfo);
-        //     return res.resultParm.shopinfo;
-        // })
-        // .catch(this.handleError)
     }
 
     private handleError(error: any): Promise<any> {
