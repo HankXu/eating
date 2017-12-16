@@ -28,3 +28,15 @@ body .ant-layout{
 .cus-menu-item .cut-avatar .cut-menu-anticon {
     margin-right: 5px;
 }
+
+/* 用户头像高100%不拉伸效果 */
+.cus-avatar-width .ng-star-inserted {
+    width: auto;
+    height: 100%;
+}
+
+/* 用户头像宽100%不拉伸效果 */
+.cus-avatar-hight .ng-star-inserted {
+    width: auto;
+    height: 100%;
+}

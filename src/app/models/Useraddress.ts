@@ -4,4 +4,6 @@ export class Useraddress {
     address: string;
     phone: string;
     fullname: string;
+    geoname: string;
+    geohash: string;
 }
