@@ -7,8 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileBreadcrumbComponent implements OnInit {
 
+  currAddress: string = '';
+
   constructor(
-  ) { }
+  ) {
+    this.currAddress = JSON.parse(localStorage.getItem("locatedInfo")).address;
+  }
 
   ngOnInit() {
   }

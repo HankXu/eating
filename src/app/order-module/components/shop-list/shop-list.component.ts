@@ -21,6 +21,7 @@ export class ShopListComponent implements OnInit {
   city: string;
   address: string;
 
+
   constructor(
     private shopListService: ShopListService,  //在构造器的参数列表里填入需要注入的service
     private activatedRoute: ActivatedRoute,
@@ -35,7 +36,7 @@ export class ShopListComponent implements OnInit {
       .then(
         shops => {
         this.shopList = shops;
-        this.hasShopTag = true;
+        this.hasShopTag = true; 
         console.log(this.shopList);
       }, 
       error => {
@@ -52,6 +53,7 @@ export class ShopListComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(queryParams => {
       this.getShopes(queryParams.city, queryParams.address);
+      this.address = queryParams.address;
     });
   }
 
