@@ -19,7 +19,7 @@ export class ShopListComponent implements OnInit {
   shopList: Shop[];
   hasShopTag: boolean = false;
   city: string;
-  address: string;
+  address: string = '';
 
 
   constructor(

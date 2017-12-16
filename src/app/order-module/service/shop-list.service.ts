@@ -35,7 +35,12 @@ export class ShopListService {
                 if (res.serviceResult !== 1) {
                     return this.handleError("定位失败");
                 }
-                console.log(res.resultParm.city);
+                console.log(res.resultParm);
+                let lonLat = {
+                    lon: res.resultParm.lon,
+                    lat: res.resultParm.lat
+                }
+                this.locatedStorage(res.resultParm.city, res.resultParm.city, res.resultParm.geoHash, lonLat);
                 return res.resultParm.city;
             })
             .catch(this.handleError);
@@ -89,6 +94,7 @@ export class ShopListService {
             geoHash,
             lonLat,
         }
+        console.log(locatedInfo);
         localStorage.setItem("locatedInfo", JSON.stringify(locatedInfo));  //设置本地存储，将定位存储起来
     }
 
