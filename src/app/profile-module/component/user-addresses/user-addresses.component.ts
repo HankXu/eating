@@ -35,7 +35,9 @@ export class UserAddressesComponent implements OnInit {
   ngOnInit() {
     this.menuService.currentMenu(2);
     this.getAddressList();
-    this.localgeohash = JSON.parse(localStorage.getItem("locatedInfo")).geoHash;
+    if (localStorage.getItem("locatedInfo") != null) {
+      this.localgeohash = JSON.parse(localStorage.getItem("locatedInfo")).geoHash;
+    }
   }
 
   // 获取地址列表

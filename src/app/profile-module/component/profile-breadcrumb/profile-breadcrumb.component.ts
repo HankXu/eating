@@ -11,10 +11,13 @@ export class ProfileBreadcrumbComponent implements OnInit {
 
   constructor(
   ) {
-    this.currAddress = JSON.parse(localStorage.getItem("locatedInfo")).address;
+    
   }
 
   ngOnInit() {
+    if (localStorage.getItem("locatedInfo") != null) {
+      this.currAddress = JSON.parse(localStorage.getItem("locatedInfo")).address;
+    }
   }
 
 }
