@@ -26,7 +26,7 @@
         </div>
         <div nz-submenu *ngIf="isLogin">
           <div title class="cut-avatar" [routerLink]="['/profile']">
-            <nz-avatar nzIcon="anticon anticon-user" nzSize="large" nzSrc="{{userfaceimg}}"></nz-avatar> {{username}}
+            <nz-avatar nzIcon="anticon anticon-user" class="cus-avatar" nzSize="large" nzSrc="{{userfaceimg}}"></nz-avatar> {{username}}
           </div>
           <ul>
             <li nz-menu-item [routerLink]="['/profile']">

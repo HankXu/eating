@@ -19,7 +19,8 @@ export class ShopListComponent implements OnInit {
   shopList: Shop[];
   hasShopTag: boolean = false;
   city: string;
-  address: string;
+  address: string = '';
+
 
   constructor(
     private shopListService: ShopListService,  //在构造器的参数列表里填入需要注入的service
@@ -35,12 +36,7 @@ export class ShopListComponent implements OnInit {
       .then(
         shops => {
         this.shopList = shops;
-        this.hasShopTag = true;
-        let locatedInfo = {
-          address: address,
-          geoHash: ''
-        }
-        localStorage.setItem("locatedInfo", JSON.stringify(locatedInfo));
+        this.hasShopTag = true; 
         console.log(this.shopList);
       }, 
       error => {
@@ -57,6 +53,7 @@ export class ShopListComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(queryParams => {
       this.getShopes(queryParams.city, queryParams.address);
+      this.address = queryParams.address;
     });
   }
 

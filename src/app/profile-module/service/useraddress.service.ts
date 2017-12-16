@@ -39,6 +39,9 @@ export class UseraddressService {
         userAddressPo.phone = userAddress.phone;
         userAddressPo.address = userAddress.address;
 
+        userAddressPo.geoname = userAddress.geoname;
+        userAddressPo.geohash = userAddress.geohash;
+
         let data = {
             userAddress: userAddressPo
         }
@@ -80,6 +83,9 @@ export class UseraddressService {
         userAddressPo.phone = userAddress.phone;
         userAddressPo.address = userAddress.address;
 
+        userAddressPo.geoname = userAddress.geoname;
+        userAddressPo.geohash = userAddress.geohash;
+
         let data = {
             userAddress: userAddressPo
         }
@@ -98,6 +104,26 @@ export class UseraddressService {
 
         let userAddressPo = new Useraddress();
         userAddressPo.useraddressid = useraddressid;
+
+        let data = {
+            userAddress: userAddressPo
+        }
+
+        return this.http
+            .post(url, data)
+            .toPromise()
+            .then(response => response.json() as ResultMessage)
+            .catch(this.handleError)
+    }
+
+    // 获取附近的地址
+    getNearbyAddress(geoname: string, geohash: string): Promise<ResultMessage> {
+
+        let url = this.baseUrl + "getNearbyAddress";
+
+        let userAddressPo = new Useraddress();
+        userAddressPo.geoname = geoname;
+        userAddressPo.geohash = geohash;
 
         let data = {
             userAddress: userAddressPo

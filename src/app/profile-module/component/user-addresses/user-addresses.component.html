@@ -48,7 +48,22 @@
   </div>
   <div nz-row class="cus-modal-div">
     <div nz-col [nzSpan]="4" class="cus-col-label">
-      <span class="cus-label">收货地址</span>
+      <span class="cus-label">定位地址</span>
+    </div>
+    <div nz-col [nzSpan]="8" [nzOffset]="2">
+      <nz-dropdown [nzClickHide]="false">
+        <nz-input [nzPlaceHolder]="'定位地址'" [(ngModel)]="addressPo.geoname" (ngModelChange)="getNearbyAddress()" [nzSize]="'default'" class="cus-input"
+          nz-dropdown>
+        </nz-input>
+        <ul nz-menu>
+          <li nz-menu-item *ngFor="let address of nearbyAddress" (click)="selectAddress(address.name, address.geohash)">{{address.name}}</li>
+        </ul>
+      </nz-dropdown>
+    </div>
+  </div>
+  <div nz-row class="cus-modal-div">
+    <div nz-col [nzSpan]="4" class="cus-col-label">
+      <span class="cus-label">详细地址</span>
     </div>
     <div nz-col [nzSpan]="8" [nzOffset]="2">
       <nz-input [nzPlaceHolder]="'收货地址'" [(ngModel)]="addressPo.address" [nzSize]="'default'" class="cus-input">
