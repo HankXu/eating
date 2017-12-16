@@ -1,28 +1,35 @@
 <div nz-row class="cus-map">
   <div nz-col [nzSpan]="12">
-      <div nz-row [nzGutter]="8">
-        <div nz-col [nzSpan]="21">
-          <nz-input-group [nzSize]="'large'" [nzCompact]="true">
-            <div nz-col [nzSpan]="6">
-              <nz-cascader [nzSize]="'large'" [nzOptions]="pc_options" [(ngModel)]="currCity" [nzDisplayRender]="cascRender" name="city">
-              </nz-cascader>
-              <!-- <nz-select [ngModel]="currCity" name="location" [nzSize]="'large'" class="cus-location-select">
+    <div nz-row [nzGutter]="8">
+      <div nz-col [nzSpan]="21">
+        <nz-input-group [nzSize]="'large'" [nzCompact]="true">
+          <div nz-col [nzSpan]="6">
+            <nz-cascader [nzSize]="'large'" [nzOptions]="pc_options" [(ngModel)]="currCity" [nzDisplayRender]="cascRender" name="city">
+            </nz-cascader>
+            <!-- <nz-select [ngModel]="currCity" name="location" [nzSize]="'large'" class="cus-location-select">
                 <nz-option [nzLabel]="'浙江'" [nzValue]="'浙江'" class="cus-location-item"></nz-option>
                 <nz-option [nzLabel]="'广东'" [nzValue]="'广东'" class="cus-location-item"></nz-option>
                 <nz-option [nzLabel]="currCity" [nzValue]="currCity" class="cus-location-item"></nz-option>
               </nz-select> -->
-            </div>
-            <div nz-col [nzSpan]="18">
-              <input [(ngModel)]="address" nz-input name="address" [nzSize]="'large'" placeholder="请输入收货地址" class="cus-address-input">
-            </div>
-          </nz-input-group>
-        </div>
-        <div nz-col [nzSpan]="3">
-          <button nz-button [nzType]="'primary'" (click)="searchNearbyShop()" class="cus-search-btn" type="submit">
-            <i class="anticon anticon-search"></i>
-            <span>搜索</span>
-          </button>
-        </div>
+          </div>
+          <div nz-col [nzSpan]="18">
+            <nz-dropdown [nzClickHide]="false" style="width: 100%;">
+              <input [(ngModel)]="address" nz-input name="address" [nzSize]="'large'" 
+              [placeholder]="'请输入收货地址'" class="cus-address-input" (ngModelChange)="getNearbyAddress()" nz-dropdown>
+              <ul nz-menu>
+                <li nz-menu-item *ngFor="let address of nearbyAddress" 
+                (click)="selectAddress(address.name, address.geohash)">{{address.name}}</li>
+              </ul>
+            </nz-dropdown>
+          </div>
+        </nz-input-group>
       </div>
+      <div nz-col [nzSpan]="3">
+        <button nz-button [nzType]="'primary'" (click)="searchNearbyShop()" class="cus-search-btn" type="submit">
+          <i class="anticon anticon-search"></i>
+          <span>搜索</span>
+        </button>
+      </div>
+    </div>
   </div>
 </div>
