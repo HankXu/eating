@@ -50,6 +50,7 @@
         {{order.status==4?"已完成订单":""}}
         {{order.status==5?"已退单":""}}
         {{order.status==6?"退单处理中":""}}
+        {{order.status==7?"已评价":""}}
       </td>
       <td nz-td class="cus-order-list-in-padding-item">
           <span>
@@ -70,6 +71,10 @@
             </button>
             <button *ngIf="order.status==2 || order.status==3" nz-button [nzType]="'danger'" (click)="returnOrder(order.orderid)">
               <span>退单</span>
+            </button>
+            
+            <button *ngIf="order.status==4" nz-button [nzType]="'default'" (click)="checkOrderDetail(order.orderid)">
+              <span>评价</span>
             </button>
             <button nz-button [nzType]="'default'" (click)="checkOrderDetail(order.orderid)">
               <span>查看详情</span>
