@@ -44,29 +44,28 @@
 <div class="cus-order-address">
     <div class="cus-order-address-title">配送信息
         
-                <nz-select [nzSize]="'small'" style="width:200px;margin-left:10px;" nzPlaceHolder="请选择配送信息">
-                    <nz-option [nzLabel]="'广东海洋大学海浪A609'" [nzValue]="'China'"></nz-option>
-                    <nz-option [nzLabel]="'广东海洋大学钟海楼03001'" [nzValue]="'U.S.A'"></nz-option>
-                </nz-select>
+        <nz-select [nzSize]="'small'" style="width:200px;margin-left:10px;" nzPlaceHolder="请选择配送信息" [(ngModel)]="useraddressSelected" (nzOpenChange)="useraddressChange()">
+            <nz-option *ngFor="let useraddress of useraddresses" [nzLabel]="useraddress.geoname+'&nbsp;'+useraddress.address" [nzValue]="useraddress.useraddressid"></nz-option>
+        </nz-select>
             
     </div>
     <p>
-        <span>联系人：</span>张三
+        <span>联系人：</span>{{cusname}}
     </p>
     <p>
-        <span>联系电话：</span>13700000000
+        <span>联系电话：</span>{{cusphone}}
     </p>
     <p>
-        <span>送餐地址：</span>广东海洋大学海浪A609
+        <span>送餐地址：</span>{{cusaddress}}
     </p>
     <p>
         <span>送达时间：</span>
-        <nz-timepicker [nzSize]="'middle'">
+        <nz-timepicker [nzSize]="'middle'" [(ngModel)]="reachtime" >
         </nz-timepicker>
     </p>
     <p>
         <span>备注信息：</span>
-        <nz-input style="width:200px;" [(ngModel)]="inputValueTwo" nzType="textarea" [nzAutosize]="autosize"></nz-input>
+        <nz-input style="width:200px;" [(ngModel)]="remark" nzType="textarea" [nzAutosize]="autosize"></nz-input>
     </p>
 </div>
 <div class="cus-order-createbtn">

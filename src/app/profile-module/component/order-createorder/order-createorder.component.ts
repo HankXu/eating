@@ -29,6 +29,8 @@ export class OrderCreateorderComponent implements OnInit {
 
   isLoading = false;
   useraddresses:Useraddress[];
+  useraddressSelected:number;
+
 
   ngOnInit() {
     this.initUseraddress();
@@ -42,7 +44,7 @@ export class OrderCreateorderComponent implements OnInit {
         let resultCode = resultMessage.serviceResult;
         switch (resultCode) {
           case 1: {
-            
+            this.useraddresses = resultMessage.resultParm.addressList;
             break;
           }
           default: {
@@ -54,7 +56,28 @@ export class OrderCreateorderComponent implements OnInit {
       .then(resultMessage => this.isLoading = false);
   }
 
-  
+
+  cusphone:String;
+  cusname:String;
+  cusaddress:String;
+  remark:String;
+  reachtime:String;
+
+  useraddressChange():void{
+    // console.info(this.useraddressSelected);
+    for(let i = 0;i<this.useraddresses.length;i++){
+      if(this.useraddresses[i].useraddressid == this.useraddressSelected){
+        this.cusname= this.useraddresses[i].fullname;
+        this.cusaddress= this.useraddresses[i].geoname + " " + this.useraddresses[i].address;
+        this.cusphone = this.useraddresses[i].phone;
+      }
+    }
+
+  }
+
+
+
+
   // Message全局提示
   createMessage = (type, text) => {
     this._message.create(type, text);
