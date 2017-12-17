@@ -1,7 +1,7 @@
 export class OrderItem {
-    orderitemid:String;
+    orderitemid:number;
     goodsname:String;
-    quantity:String;
-    goodsprice:String;
-    goodsid:String;
+    quantity:number;
+    goodsprice:number;
+    goodsid:number;
 }

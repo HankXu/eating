@@ -41,7 +41,7 @@
     </div>
 
     <div class="cus-order-amounts">
-            总计：<span>66.88</span>
+            总计：<span>{{order.amounts}}</span>
         </div>
     </div>
 <div style="float:clean;"></div>
@@ -50,32 +50,14 @@
         <tr>
             <th>菜品名称</th>
             <th>数量</th>
-            <th>小计</th>
-            <th>评价</th>
+            <th>单价</th>
         </tr>
     </thead>
-    <tbody>
-        <tr>
-            <td>米饭</td>
-            <td>1</td>
-            <td>20.12</td>
-            <td>口感很好</td>
-        </tr>
-        <tr>
-            <td>米饭</td>
-            <td>1</td>
-            <td>20.12</td>
-            <td>口感很好</td>
-        </tr>
-        <tr>
-            <td>米饭</td>
-            <td>1</td>
-            <td>20.12</td>
-            <td>
-                <a>
-                    <i class="anticon anticon-edit"></i>评价
-                </a>
-            </td>
+    <tbody *ngIf="order">
+        <tr *ngFor="let item of order.orderitemVoList" style="color:#1e89e0;">
+            <td>{{item.goodsname}}</td>
+            <td>{{item.quantity}}</td>
+            <td>{{item.goodsprice}}</td>
         </tr>
     </tbody>
 </table>
