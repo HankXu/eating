@@ -21,6 +21,10 @@ export class UserAddressesComponent implements OnInit {
 
   addressPo: Useraddress;
 
+  nearbyAddress: Array<any>;
+
+  localgeohash: string;
+
   constructor(
     private menuService: MenuService,
     private confirmServ: NzModalService,
@@ -31,6 +35,9 @@ export class UserAddressesComponent implements OnInit {
   ngOnInit() {
     this.menuService.currentMenu(2);
     this.getAddressList();
+    if (localStorage.getItem("locatedInfo") != null) {
+      this.localgeohash = JSON.parse(localStorage.getItem("locatedInfo")).geoHash;
+    }
   }
 
   // 获取地址列表
@@ -97,6 +104,7 @@ export class UserAddressesComponent implements OnInit {
     this.addressPo.fullname = ''
     this.addressPo.address = ''
     this.addressPo.phone = ''
+    this.addressPo.geoname = ''
 
     const modal = this.confirmServ.open({
       title: titleTpl,
@@ -107,6 +115,7 @@ export class UserAddressesComponent implements OnInit {
       },
       onCancel: () => {
         this.addressPo = new Useraddress();
+        this.nearbyAddress = null;
       }
     });
   }
@@ -120,6 +129,8 @@ export class UserAddressesComponent implements OnInit {
       this.createMessage('warning', '请输入姓名');
     } else if (!addressRegex.test(this.addressPo.address)) {
       this.createMessage('warning', '请输入地址');
+    } else if (this.addressPo.geohash == '' || this.addressPo.geoname == '') {
+      this.createMessage('warning', '请在下拉的定位地址中选择一个地址');
     } else {
       return this.useraddressService.addUserAddress(this.addressPo).then(
         resultMessage => {
@@ -128,6 +139,7 @@ export class UserAddressesComponent implements OnInit {
             case 1: {
               this.createMessage('success', '添加地址成功');
               this.getAddressList();
+              this.nearbyAddress = null;
               return Promise.resolve("resolve");
             }
             case 1007: {
@@ -161,6 +173,7 @@ export class UserAddressesComponent implements OnInit {
     this.addressPo.fullname = ''
     this.addressPo.address = ''
     this.addressPo.phone = ''
+    this.addressPo.geoname = ''
 
     // 获取对应地址内容
     this.getAddress(useraddressid);
@@ -174,6 +187,7 @@ export class UserAddressesComponent implements OnInit {
       },
       onCancel: () => {
         this.addressPo = new Useraddress();
+        this.nearbyAddress = null;
       }
     });
   }
@@ -210,6 +224,8 @@ export class UserAddressesComponent implements OnInit {
       this.createMessage('warning', '请输入姓名');
     } else if (!addressRegex.test(this.addressPo.address)) {
       this.createMessage('warning', '请输入地址');
+    } else if (this.addressPo.geohash == '' || this.addressPo.geoname == '') {
+      this.createMessage('warning', '请在下拉的定位地址中选择一个地址');
     } else {
       return this.useraddressService.editUserAddress(this.addressPo).then(
         resultMessage => {
@@ -218,6 +234,7 @@ export class UserAddressesComponent implements OnInit {
             case 1: {
               this.createMessage('success', '修改地址成功');
               this.getAddressList();
+              this.nearbyAddress = null;
               return Promise.resolve("resolve");
             }
             case 1007: {
@@ -243,6 +260,41 @@ export class UserAddressesComponent implements OnInit {
       );
     }
     return Promise.reject("操作失败, 不关闭模态框");
+  }
+
+  // 获取附近的地址
+  getNearbyAddress() {
+    // TODO: 获取缓存中的数据
+    // this.localgeohash = "w7y3p22ft8v";
+    this.addressPo.geohash = '';
+
+    if (this.addressPo.geoname != '') {
+      this.useraddressService.getNearbyAddress(this.addressPo.geoname, this.localgeohash).then(
+        resultMessage => {
+          let resultCode = resultMessage.serviceResult;
+          switch (resultCode) {
+            case 1: {
+              console.log(resultMessage.resultParm);
+              this.nearbyAddress = resultMessage.resultParm.nearbyAddress;
+              break;
+            }
+            default: {
+              //其他错误
+              break;
+            }
+          }
+        },
+        error => {
+          this.createMessage('error', '服务器繁忙, 请稍后再试.');
+        }
+      );
+    }
+
+  }
+
+  selectAddress(geoname: string, geohash: string) {
+    this.addressPo.geoname = geoname;
+    this.addressPo.geohash = geohash;
   }
 
   // Message全局提示

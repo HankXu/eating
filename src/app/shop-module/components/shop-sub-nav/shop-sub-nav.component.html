@@ -12,13 +12,13 @@
           </li>
         </ul>
         <nz-radio-group [(ngModel)]="sortType" [nzSize]="'large'">
-          <label nz-radio-button [nzValue]="'default'">
+          <label nz-radio-button [nzValue]="'default'" (click)="sortedWayChage('默认')">
             <span>默认排序</span>
           </label>
-          <label nz-radio-button [nzValue]="'price'">
-            <span>价格 <i class="anticon anticon-arrow-down"></i></span>
+          <label nz-radio-button [nzValue]="'price'" (click)="sortedWayChage('价格')">
+            <span>价格 <i class="anticon anticon-arrow-up"></i></span>
           </label>
-          <label nz-radio-button [nzValue]="'sales'">
+          <label nz-radio-button [nzValue]="'sales'" (click)="sortedWayChage('销量')">
             <span>销量 <i class="anticon anticon-arrow-down"></i></span>
           </label>
         </nz-radio-group>

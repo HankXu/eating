@@ -19,6 +19,7 @@ const validCodeRegex = /^\d{4}$/;
 export class UserInfoComponent implements OnInit {
 
   userinfo: Userinfo
+
   newUsername: string;
 
   newUserfaceimg: string;
@@ -48,7 +49,7 @@ export class UserInfoComponent implements OnInit {
   ngOnInit() {
     this.userinfo = new Userinfo();
     this.newUsername = '';
-    this.newUserfaceimg = '';
+    this.newUserfaceimg = null;
     this.newPhone = '';
     this.validCode = '';
 
@@ -64,11 +65,11 @@ export class UserInfoComponent implements OnInit {
 
   initUploadImg() {
     this.uploader = new FileUploader({
-      url: "/eating/uploadFile",
+      url: "/eating-user/uploadFile",
       method: "POST",
       itemAlias: "file",
       allowedFileType: ["image"],
-      autoUpload: false
+      autoUpload: true
     });
   }
 
@@ -79,7 +80,10 @@ export class UserInfoComponent implements OnInit {
       if (status == 200) {
         // 上传文件后获取服务器返回的数据
         let resultMessage = JSON.parse(response);
-        this.newUserfaceimg = "eating/upload/temp/file/" + resultMessage.resultParm.fileName;
+        // if (this.userinfo.faceimg != null) {
+        //   this.userinfo.faceimg = "eating-user/upload/userfaceimg/" + this.userinfo.faceimg;
+        // }
+        this.newUserfaceimg = "eating-user/upload/temp/file/" + resultMessage.resultParm.fileName;
       } else {
         // 上传文件后获取服务器返回的数据错误
         this.createMessage('error', '上传失败.');
@@ -111,7 +115,7 @@ export class UserInfoComponent implements OnInit {
       },
       onCancel: () => {
         this.newUsername = '';
-        this.newUserfaceimg = '';
+        this.newUserfaceimg = null;
         this.newPhone = '';
         this.validCode = '';
 
@@ -314,7 +318,9 @@ export class UserInfoComponent implements OnInit {
         switch (resultCode) {
           case 1: {
             this.userinfo = resultMessage.resultParm.userinfo;
-            this.userinfo.faceimg = "eating/upload/userfaceimg/" + this.userinfo.faceimg;
+            if (this.userinfo.faceimg != null) {
+              this.userinfo.faceimg = "eating-user/upload/userfaceimg/" + this.userinfo.faceimg;
+            }
             this.userinfo.phone = resultMessage.resultParm.phone;
             break;
           }

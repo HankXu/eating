@@ -23,6 +23,7 @@ import { OrderService } from './service/order.service';
 
 
 import { FileUploadModule } from 'ng2-file-upload';
+import { NearbyAddressService } from './service/nearby-address.service';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { FileUploadModule } from 'ng2-file-upload';
   providers: [
     ShopListService, //这是订餐模块内部使用的服务
     OrderService,
+    NearbyAddressService
   ]
 })
 export class OrderModule { }

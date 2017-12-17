@@ -31,10 +31,8 @@ export class UserHomeComponent implements OnInit {
       if (userInfo != null) {
         this.username = userInfo.username;
         this.phone = userInfo.phone;
-        if (userInfo.faceimg == null) {
-          this.userfaceimg = '';
-        } else {
-          this.userfaceimg = 'eating/upload/userfaceimg/' + userInfo.faceimg;
+        if (userInfo.faceimg != null) {
+          this.userfaceimg = 'eating-user/upload/userfaceimg/' + userInfo.faceimg;
         }
       }
     });
