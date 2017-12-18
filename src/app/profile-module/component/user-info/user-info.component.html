@@ -4,7 +4,7 @@
     <span class="cus-label">头像</span>
   </div>
   <div nz-col [nzSpan]="4" [nzOffset]="1">
-    <nz-avatar class="cus-avatar cus-avatar-width" nzSrc="{{userinfo.faceimg}}"></nz-avatar><!-- nzIcon="anticon anticon-user" -->
+    <nz-avatar class="cus-avatar" [class.cus-avatar-width]="userinfo.faceimg" nzIcon="anticon anticon-user" nzSrc="{{userinfo.faceimg}}"></nz-avatar>
   </div>
   <div nz-col [nzSpan]="4" [nzOffset]="2">
     <button nz-button [nzType]="'primary'" (click)="showModal('修改头像', uploadimg)">
@@ -48,7 +48,7 @@
       <span class="cus-label">头像预览</span>
     </div>
     <div nz-col [nzSpan]="20">
-      <nz-avatar class="cus-avatar cus-avatar-width" nzSrc="{{newUserfaceimg}}"></nz-avatar><!-- nzIcon="anticon anticon-user" -->
+      <nz-avatar class="cus-avatar" [class.cus-avatar-width]="newUserfaceimg" nzIcon="anticon anticon-user" nzSrc="{{newUserfaceimg}}"></nz-avatar>
     </div>
   </div>
   <div nz-row class="cus-model-div">

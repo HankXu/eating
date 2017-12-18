@@ -13,6 +13,8 @@ export class OrderService {
     private getOrderListUrl = this.baseUrl + '/getOrderList';
     private cancelOrderUrl = this.baseUrl + '/cancelOrder';
     private remindOrderUrl = this.baseUrl + '/remindOrder';
+    private returnOrderUrl = this.baseUrl + '/returnOrder';
+    private getOrderDetailUrl = this.baseUrl + '/getOrderDetail';
 
     //在此声明需要使用的内置对象，框架会自动注入
     constructor(
@@ -46,7 +48,21 @@ export class OrderService {
             .catch(this.handleError);
     }
 
+     //获取订单详情
+     getOrderDetail(orderid:String): Promise<ResultMessage> {
+        const body = {
+            "order":{
+                "orderid":orderid
+            }
+        }
+        return this.http
+            .post(this.getOrderDetailUrl,body)
+            .toPromise()
+            .then(response => response.json() as ResultMessage)
+            .catch(this.handleError);
+    }
 
+    //取消订单
     cancelOrder(orderid:String): Promise<ResultMessage> {
         const body = {
             "order":{
@@ -60,6 +76,21 @@ export class OrderService {
             .catch(this.handleError);
     }
 
+    //退单
+    returnOrder(orderid:String): Promise<ResultMessage> {
+        const body = {
+            "order":{
+                "orderid":orderid
+            }
+        }
+        return this.http
+            .post(this.returnOrderUrl,body)
+            .toPromise()
+            .then(response => response.json() as ResultMessage)
+            .catch(this.handleError);
+    }
+
+    //催单
     remindOrder(orderid:String): Promise<ResultMessage> {
         const body = {
             "order":{

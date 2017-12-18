@@ -107,7 +107,22 @@ export class OrderListComponent implements OnInit {
 
   //退单
   returnOrder(orderid:String):void{
-    
+    this.orderService
+    .returnOrder(orderid)
+    .then(resultMessage => {
+      let resultCode = resultMessage.serviceResult;
+      switch (resultCode) {
+        case 1: {
+          this.getOrders();
+          break;
+        }
+        default: {
+          this.createMessage('error', '服务器繁忙, 请稍后再试.');
+          break;
+        }
+      }
+    })
+    .then(resultMessage => this.isLoading = false);
   }
 
   //催单

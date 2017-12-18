@@ -1,9 +1,13 @@
 import { Component, OnInit, OnChanges, DoCheck, Input, Output, OnDestroy} from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router'; 
 import { ShoppingCartService } from '../../service/shopping-cart.service';
 import { ShopService } from '../../service/shop.service';
 import { Goods } from '../../../models/Goods';
+import { Shop } from '../../../models/Shop';
 import { Subscription } from 'rxjs/Subscription';
 import { InnerCartGoods } from '../../../models/InnerCartGoods';
+import { PlaceOrderService } from '../../../core-module/service/place-order.service';
+import { PlaceOrderInfo } from '../../../models/PlaceOrderInfo';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -15,6 +19,9 @@ export class ShoppingCartComponent implements OnInit, DoCheck, OnDestroy{
   cartItems: InnerCartGoods[] = [];
 
   cartTotal: number = 0;
+  minCost: number = 0;
+
+  shopInfo: Shop;
 
   isOpen: boolean = false;
 
@@ -26,7 +33,10 @@ export class ShoppingCartComponent implements OnInit, DoCheck, OnDestroy{
 
   constructor(
     private shoppingCartService: ShoppingCartService,
-    private shopService: ShopService
+    private shopService: ShopService,
+    private placeOrderService: PlaceOrderService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   addItem(item: Goods): void {
@@ -59,6 +69,15 @@ export class ShoppingCartComponent implements OnInit, DoCheck, OnDestroy{
     this.cartItems.forEach( curr => this.cartTotal += curr.goodsCounts*curr.goodsPrice);
   }
 
+  placeOrder(){
+    let placeOrderInfo = new PlaceOrderInfo();
+    placeOrderInfo.shopinfo = this.shopInfo;
+    placeOrderInfo.innerCartGoodsList = this.cartItems;
+    placeOrderInfo.totalcount = this.cartTotal;
+    this.placeOrderService.announcePlaceOrderInfo(placeOrderInfo);
+    this.router.navigate(['/placeorder/checkout']);
+  }
+
   ngOnInit() {
     this.subscription = this.shoppingCartService
     .selectedGoods$
@@ -74,6 +93,8 @@ export class ShoppingCartComponent implements OnInit, DoCheck, OnDestroy{
     .subscribe(
       shopInfo => {
         this.isOpen = shopInfo.isonline === 1;
+        this.shopInfo = shopInfo;
+        this.minCost = Number.parseInt(this.shopInfo.mincost);
       }
     )
   }

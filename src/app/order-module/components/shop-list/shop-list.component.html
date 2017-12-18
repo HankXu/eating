@@ -3,8 +3,8 @@
     <div nz-row  [nzType]="'flex'" [nzJustify]="'space-between'" [nzAlign]="'middle'" class="cus-breadcrumb">
       <div nz-col [nzSpan]="6">
         当前位置：
-        <a [routerLink]="['/home']" class="cus-breadcrumb-address">{{address}}</a>
-        <a [routerLink]="['/home']" class="cus-breadcrumb-changeaddr">[切换地址]</a>
+        <a  (click)="changeAddress()" class="cus-breadcrumb-address">{{address}}</a>
+        <a  (click)="changeAddress()" class="cus-breadcrumb-changeaddr">[切换地址]</a>
       </div>
       <div nz-col [nzSpan]="6">
         <nz-input [nzType]="'search'" [nzPlaceHolder]="'搜索商家'"></nz-input>

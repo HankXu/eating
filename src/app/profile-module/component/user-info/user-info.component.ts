@@ -19,6 +19,7 @@ const validCodeRegex = /^\d{4}$/;
 export class UserInfoComponent implements OnInit {
 
   userinfo: Userinfo
+
   newUsername: string;
 
   newUserfaceimg: string;

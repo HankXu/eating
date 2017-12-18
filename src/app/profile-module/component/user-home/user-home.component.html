@@ -3,8 +3,7 @@
     <div nz-row [nzGutter]="8" nz-row [nzType]="'flex'" [nzJustify]="'space-around'" [nzAlign]="'middle'">
         <div nz-col class="cus-userinfo-img" [nzSpan]="4">
             <div class="cus-avatar-div">
-                <nz-avatar [routerLink]="['/profile/userinfo']" class="cus-avatar cus-avatar-width" nzSrc="{{userfaceimg}}"></nz-avatar> 
-                <!-- nzIcon="anticon anticon-user" -->
+                <nz-avatar [routerLink]="['/profile/userinfo']" class="cus-avatar" [class.cus-avatar-width]="userfaceimg" nzIcon="anticon anticon-user" nzSrc="{{userfaceimg}}"></nz-avatar>
             </div>
         </div>
         <div nz-col class="cus-userinfo-name" [nzSpan]="5">
