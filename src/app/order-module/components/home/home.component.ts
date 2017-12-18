@@ -111,6 +111,18 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    
+    if(localStorage.getItem("locatedInfo")) {
+      let locatedInfo = JSON.parse(localStorage.getItem("locatedInfo"))
+      this.router.navigate(['home/shop'],{
+        queryParams: {
+          city: locatedInfo.city,
+          address: locatedInfo.address
+        }
+      })
+    }
+
     this.validateForm = this.fb.group({
       address: [null, [Validators.required]]
     });

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModel } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { NzMessageService } from 'ng-zorro-antd';
 
@@ -25,6 +25,7 @@ export class ShopListComponent implements OnInit {
   constructor(
     private shopListService: ShopListService,  //在构造器的参数列表里填入需要注入的service
     private activatedRoute: ActivatedRoute,
+    private route: Router,
     private _message: NzMessageService,
   ) {}
 
@@ -48,6 +49,11 @@ export class ShopListComponent implements OnInit {
       }
     );   //调用then方法,将返回的商店列表赋值给我们在这个类里定义的shopList
 
+  }
+
+  changeAddress(): void{
+    localStorage.removeItem("locatedInfo");
+    this.route.navigate(['/home']);
   }
 
   ngOnInit() {
