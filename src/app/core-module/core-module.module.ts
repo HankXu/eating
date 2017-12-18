@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 //导入service
 import { AuthService } from './service/auth.service'
+import { PlaceOrderService } from './service/place-order.service';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ export class CoreModule {
       ngModule: CoreModule,
       providers: [
         AuthService,//新添加的服务就跟在后面就可以
+        PlaceOrderService
       ]
     };
   }

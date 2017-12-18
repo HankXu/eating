@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 
-import { UseraddressService } from '../../service/useraddress.service';
+import { UseraddressService } from '../../../profile-module/service/useraddress.service';
 
 import { Useraddress} from '../../../models/Useraddress';
 
@@ -12,6 +12,8 @@ import {
   FormBuilder,
   FormGroup
 } from '@angular/forms';
+import { PlaceOrderService } from '../../../core-module/service/place-order.service';
+import { PlaceOrderInfo } from '../../../models/PlaceOrderInfo';
 
 @Component({
   selector: 'app-order-createorder',
@@ -25,16 +27,14 @@ export class OrderCreateorderComponent implements OnInit {
     private useraddressService:UseraddressService,
     private modalService: NzModalService,
     private _message: NzMessageService,
+    private placeOrderService: PlaceOrderService
   ) { }
 
   isLoading = false;
   useraddresses:Useraddress[];
   useraddressSelected:number;
 
-
-  ngOnInit() {
-    this.initUseraddress();
-  }
+  placeOrderInfo: PlaceOrderInfo = new PlaceOrderInfo();  //里面包含商店信息、购物车列表的商品、购物车总价。列表商品有商品图片地址、名称、id、数量、单价
 
   initUseraddress():void{
     this.isLoading = true;
@@ -76,6 +76,20 @@ export class OrderCreateorderComponent implements OnInit {
   }
 
 
+  ngOnInit() {
+    this.initUseraddress();
+
+    this.placeOrderService.
+    placeOrderSource$
+    .subscribe(
+      placeOrderInfo => {
+        if(placeOrderInfo.totalcount != undefined){
+          this.placeOrderInfo = placeOrderInfo;
+        }
+      }
+    )
+    console.log(this.placeOrderInfo.totalcount);
+  }
 
 
   // Message全局提示
