@@ -19,8 +19,10 @@ export class ShoppingCartComponent implements OnInit, DoCheck, OnDestroy{
   cartItems: InnerCartGoods[] = [];
 
   cartTotal: number = 0;
+  minCost: number = 0;
 
   shopInfo: Shop;
+
   isOpen: boolean = false;
 
 
@@ -92,6 +94,7 @@ export class ShoppingCartComponent implements OnInit, DoCheck, OnDestroy{
       shopInfo => {
         this.isOpen = shopInfo.isonline === 1;
         this.shopInfo = shopInfo;
+        this.minCost = Number.parseInt(this.shopInfo.mincost);
       }
     )
   }

@@ -19,7 +19,8 @@
       <i class="anticon anticon-shopping-cart"></i>
       <span class="cus-cart-total"> ￥{{cartTotal}}</span>
     </div>
-    <button *ngIf="isOpen" nz-button [nzType]="'primary'" class="cus-cart-btn" [disabled]="!cartItems.length" (click)="placeOrder()">结算</button>
+    <button *ngIf="isOpen && cartTotal >= minCost " nz-button [nzType]="'primary'" class="cus-cart-btn" [disabled]="!cartItems.length" (click)="placeOrder()">结算</button>
+    <button *ngIf="isOpen && cartTotal < minCost " nz-button [nzType]="'primary'" class="cus-cart-btn" [disabled]="(cartTotal < minCost)">不够起送价哦</button>
     <button *ngIf="!isOpen" nz-button [nzType]="'primary'" class="cus-cart-btn" [disabled]="!isOpen">商家未营业</button>
   </div>
 </div>
